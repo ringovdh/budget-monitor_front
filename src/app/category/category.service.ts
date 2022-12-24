@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Category} from "./category";
+import {CustomHttpResponse} from "../entity/customHttpResponse";
+import {Page} from "../entity/page";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,7 @@ export class CategoryService {
 
   httpOptions = {
     headers: new HttpHeaders({
+      'Accept': 'application/json',
       'Content-Type': 'application/json'
     })
   }
@@ -21,6 +24,9 @@ export class CategoryService {
   getAll(): Observable<Category[]> {
     return this.httpClient.get<Category[]>(this.apiURL)
   }
+
+  categories$ = (label: string = '', page: number = 0, size: number = 10): Observable<CustomHttpResponse<Page<Category>>> =>
+    this.httpClient.get<any>(`${this.apiURL}label?label=${label}&page=${page}&size=${size}`);
 
   delete(id: number) {
     return this.httpClient.delete<Category>(this.apiURL + id, this.httpOptions)

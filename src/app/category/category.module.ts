@@ -5,7 +5,7 @@ import { CategoryRoutingModule } from './category-routing.module';
 import { IndexComponent } from './index/index.component';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgxPaginationModule} from "ngx-pagination";
 
 
@@ -19,7 +19,8 @@ import {NgxPaginationModule} from "ngx-pagination";
         CommonModule,
         CategoryRoutingModule,
         ReactiveFormsModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        FormsModule
     ]
 })
 export class CategoryModule { }

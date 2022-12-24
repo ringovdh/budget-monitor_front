@@ -4,6 +4,10 @@ import {Category} from "../category";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {EditComponent} from "../edit/edit.component";
 import {CreateComponent} from "../create/create.component";
+import {BehaviorSubject, catchError, map, Observable, of, startWith} from "rxjs";
+import {CustomHttpResponse} from "../../entity/customHttpResponse";
+import {Page} from "../../entity/page";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-index',
@@ -11,10 +15,15 @@ import {CreateComponent} from "../create/create.component";
   styleUrls: ['./index.component.css',
     '../../../assets/modal_form_layout.css',
     '../../../assets/panel_layout.css',
-    '../../../assets/table_layout.css']
+    '../../../assets/table_layout.css',
+    '../../../assets/pagination_layout.css']
 })
 export class IndexComponent implements OnInit {
 
+  categoryState$: Observable<{appState: string, appData?:CustomHttpResponse<Page<Category>>, error?:HttpErrorResponse}>;
+  responseSubject = new BehaviorSubject<CustomHttpResponse<Page<Category>>>(null);
+  private currentPageSubject = new BehaviorSubject<number>(0);
+  currentPage$ = this.currentPageSubject.asObservable();
   categories: Category[] = [];
   p: number = 1;
   totalCategories: number = 0;
@@ -23,12 +32,33 @@ export class IndexComponent implements OnInit {
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.loadCategories();
+    this.categoryState$ = this.categoryService.categories$().pipe(
+      map((response: CustomHttpResponse<Page<Category>>) => {
+        this.responseSubject.next(response);
+        this.currentPageSubject.next(response.data.page.number);
+        console.log(response);
+        return { appState: 'APP_LOADED', appData: response }
+      }),
+      startWith({appState: 'APP_LOADING'}),
+      catchError((error: HttpErrorResponse) => of({ appState: 'APP_ERROR', error })),
+    )
   }
 
-  pageChangeEvent(event: number){
-    this.p = event;
-    this.loadCategories();
+  goToPage(label?: string, pageNumber?: number): void {
+    this.categoryState$ = this.categoryService.categories$(label, pageNumber).pipe(
+      map((response: CustomHttpResponse<Page<Category>>) => {
+        this.responseSubject.next(response);
+        this.currentPageSubject.next(pageNumber);
+        console.log(response);
+        return { appState: 'APP_LOADED', appData: response }
+      }),
+      startWith({appState: 'APP_LOADED', appData: this.responseSubject.value}),
+      catchError((error: HttpErrorResponse) => of({ appState: 'APP_ERROR', error })),
+    )
+  }
+
+  goToNextOrPreviousPage(direction?: string, label?: string): void {
+    this.goToPage(label, direction === 'forward' ? this.currentPageSubject.value + 1 : this.currentPageSubject.value - 1);
   }
 
   deleteCategory(id:number) {

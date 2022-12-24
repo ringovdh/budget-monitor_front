@@ -4,6 +4,10 @@ import { Comment } from "../comment";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {CreateComponent} from "../create/create.component";
 import {EditComponent} from "../edit/edit.component";
+import {BehaviorSubject, catchError, map, Observable, of, startWith} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
+import {Page} from "../../entity/page";
+import {CustomHttpResponse} from "../../entity/customHttpResponse";
 
 @Component({
   selector: 'app-index',
@@ -11,10 +15,15 @@ import {EditComponent} from "../edit/edit.component";
   styleUrls: ['./index.component.css',
     '../../../assets/modal_form_layout.css',
     '../../../assets/panel_layout.css',
-    '../../../assets/table_layout.css']
+    '../../../assets/table_layout.css',
+    '../../../assets/pagination_layout.css']
 })
 export class IndexComponent implements OnInit {
 
+  commentsState$: Observable<{appState: string, appData?:CustomHttpResponse<Page<Comment>>, error?:HttpErrorResponse}>;
+  responseSubject = new BehaviorSubject<CustomHttpResponse<Page<Comment>>>(null);
+  private currentPageSubject = new BehaviorSubject<number>(0);
+  currentPage$ = this.currentPageSubject.asObservable();
   comments: Comment[] = [];
   p: number = 1;
   totalComments: number = 0;
@@ -23,22 +32,43 @@ export class IndexComponent implements OnInit {
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.loadComments();
+    this.commentsState$ = this.commentService.comments$().pipe(
+      map((response: CustomHttpResponse<Page<Comment>>) => {
+        this.responseSubject.next(response);
+        this.currentPageSubject.next(response.data.page.number);
+        console.log(response);
+        return { appState: 'APP_LOADED', appData: response }
+      }),
+      startWith({appState: 'APP_LOADING'}),
+      catchError((error: HttpErrorResponse) => of({ appState: 'APP_ERROR', error })),
+    )
   }
 
-  pageChangeEvent(event: number){
-    this.p = event;
-    this.loadComments();
+  goToPage(searchterm?: string, pageNumber: number = 0): void {
+    this.commentsState$ = this.commentService.comments$(searchterm, pageNumber).pipe(
+      map((response: CustomHttpResponse<Page<Comment>>) => {
+        this.responseSubject.next(response);
+        this.currentPageSubject.next(pageNumber);
+        console.log(response);
+        return { appState: 'APP_LOADED', appData: response }
+      }),
+      startWith({appState: 'APP_LOADED', appData: this.responseSubject.value}),
+      catchError((error: HttpErrorResponse) => of({ appState: 'APP_ERROR', error })),
+    )
   }
 
-  deleteComment(id:number) {
+  goToNextOrPreviousPage(direction?: string, searchterm?: string): void {
+    this.goToPage(searchterm, direction === 'forward' ? this.currentPageSubject.value + 1 : this.currentPageSubject.value - 1);
+  }
+
+  deleteComment(id: number) {
     this.commentService.delete(id).subscribe(() => {
       this.comments = this.comments.filter(item => item.id !== id);
       console.log('Comment deleted successfully!');
     })
   }
 
-  editComment(comment:Comment) {
+  editComment(comment: Comment) {
     const modalRef = this.modalService.open(EditComponent);
     modalRef.componentInstance.comment = comment;
     modalRef.result.then((result) => {

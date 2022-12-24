@@ -7,22 +7,28 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CommentModule } from "./comment/comment.module";
 import { CategoryModule } from "./category/category.module";
+import { ImportModule } from './import/import.module';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateComponent } from './transaction/create/create.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CreateComponent
   ],
-  imports: [
-    BrowserModule,
-    RouterOutlet,
-    CommentModule,
-    CategoryModule,
-    HttpClientModule,
-    RouterLinkWithHref,
-    NgxPaginationModule,
-    NgbModule
-  ],
+    imports: [
+        BrowserModule,
+        RouterOutlet,
+        CommentModule,
+        CategoryModule,
+        ImportModule,
+        HttpClientModule,
+        RouterLinkWithHref,
+        NgxPaginationModule,
+        NgbModule,
+        ReactiveFormsModule
+    ],
   providers: [NgbActiveModal],
   bootstrap: [AppComponent]
 })

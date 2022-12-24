@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "spaarvarken_front": {
+    "budget-monitor_front": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/spaarvarken_front",
+            "outputPath": "dist/budget-monitor_front",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "spaarvarken_front:build:production"
+              "browserTarget": "budget-monitor_front:build:production"
             },
             "development": {
-              "browserTarget": "spaarvarken_front:build:development"
+              "browserTarget": "budget-monitor_front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "spaarvarken_front:build"
+            "browserTarget": "budget-monitor_front:build"
           }
         },
         "test": {
