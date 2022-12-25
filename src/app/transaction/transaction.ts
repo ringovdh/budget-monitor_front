@@ -5,7 +5,7 @@ export interface Transaction {
   number: string;
   amount: number;
   sign: string;
-  date: string;
+  date: Date;
   comment: string;
   originalComment: string;
   category: Category;

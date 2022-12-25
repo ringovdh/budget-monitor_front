@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class TransactionService {
 
-  private readonly apiURL: string = 'http://localhost:8080/transactions/';
+  private readonly apiURL: string = 'http://localhost:8080/transactions';
 
   private httpOptions = {
     headers: new HttpHeaders({
