@@ -8,6 +8,7 @@ import {BehaviorSubject, catchError, map, Observable, of, startWith} from "rxjs"
 import {HttpErrorResponse} from "@angular/common/http";
 import {Page} from "../../entity/page";
 import {CustomHttpResponse} from "../../entity/customHttpResponse";
+import {ConfirmationModalComponent} from "../../modal/confirmation-modal/confirmation-modal.component";
 
 @Component({
   selector: 'app-index',
@@ -36,7 +37,6 @@ export class IndexComponent implements OnInit {
       map((response: CustomHttpResponse<Page<Comment>>) => {
         this.responseSubject.next(response);
         this.currentPageSubject.next(response.data.page.number);
-        console.log(response);
         return { appState: 'APP_LOADED', appData: response }
       }),
       startWith({appState: 'APP_LOADING'}),
@@ -49,7 +49,6 @@ export class IndexComponent implements OnInit {
       map((response: CustomHttpResponse<Page<Comment>>) => {
         this.responseSubject.next(response);
         this.currentPageSubject.next(pageNumber);
-        console.log(response);
         return { appState: 'APP_LOADED', appData: response }
       }),
       startWith({appState: 'APP_LOADED', appData: this.responseSubject.value}),
@@ -62,10 +61,15 @@ export class IndexComponent implements OnInit {
   }
 
   deleteComment(id: number) {
-    this.commentService.delete(id).subscribe(() => {
-      this.comments = this.comments.filter(item => item.id !== id);
-      console.log('Comment deleted successfully!');
-    })
+    const modalRef = this.modalService.open(ConfirmationModalComponent);
+    modalRef.result.then((result) => {
+      if (result === 'confirmed') {
+       this.commentService.delete(id).subscribe(() => {
+          this.comments = this.comments.filter(item => item.id !== id);
+          console.log('Comment deleted successfully!');
+        })
+      }
+    });
   }
 
   editComment(comment: Comment) {

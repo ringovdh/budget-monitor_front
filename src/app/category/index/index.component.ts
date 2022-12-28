@@ -8,6 +8,7 @@ import {BehaviorSubject, catchError, map, Observable, of, startWith} from "rxjs"
 import {CustomHttpResponse} from "../../entity/customHttpResponse";
 import {Page} from "../../entity/page";
 import {HttpErrorResponse} from "@angular/common/http";
+import {ConfirmationModalComponent} from "../../modal/confirmation-modal/confirmation-modal.component";
 
 @Component({
   selector: 'app-index',
@@ -62,10 +63,15 @@ export class IndexComponent implements OnInit {
   }
 
   deleteCategory(id:number) {
-    this.categoryService.delete(id).subscribe(() => {
-      this.categories = this.categories.filter(item => item.id !== id);
-      console.log('Category deleted successfully!');
-    })
+    const modalRef = this.modalService.open(ConfirmationModalComponent);
+    modalRef.result.then((result) => {
+      if (result === 'confirmed') {
+        this.categoryService.delete(id).subscribe(() => {
+          this.categories = this.categories.filter(item => item.id !== id);
+          console.log('Category deleted successfully!');
+        })
+      }
+    });
   }
 
   editCategory(category:Category) {

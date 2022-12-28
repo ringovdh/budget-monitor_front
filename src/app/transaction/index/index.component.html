@@ -1,0 +1,94 @@
+<ng-container *ngIf="(transactionsState$ | async) as state" [ngSwitch]="state.appState">
+  <div class="card my-5">
+    <ng-container *ngSwitchCase="'APP_ERROR'">
+      <div class="errorPanel">
+        <div class="alert alert-danger " role="alert">
+          <span>{{ state.error|json }}</span>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="customPanel">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-6">
+            <div class="card-title text-center">
+              <h3>Overzicht transacties</h3>
+            </div>
+          </div>
+          <div class="col-4">
+            <form #searchForm="ngForm" (ngSubmit)="goToPage(searchForm.value.comment)" class="d-flex" role="search">
+              <input class="form-control me2" type="search" name="comment" ngModel placeholder="commentaar" aria-label="search/">
+              <button class="btn" type="submit">Zoeken</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <ng-container *ngSwitchCase="'APP_LOADING'">
+        <div class="d-flex justify-content-center mt-4 mb-4">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading ...</span>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="'APP_LOADED'">
+        <div class="panel-body table-responsive">
+          <table class="customTable table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+              <th>Nummer</th>
+              <th>Datum</th>
+              <th>Commentaar</th>
+              <th>Categorie</th>
+              <th>Bedrag</th>
+              <th><i class="fa fa-pencil"></i></th>
+              <th><i class="fa fa-trash"></i></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tx of state.appData.data.page.content">
+              <td>{{ tx.number }}</td>
+              <td>{{ tx.date }}</td>
+              <td>{{ tx.comment }}</td>
+              <td><i class="fa {{ tx.category?.icon }}"></i></td>
+              <td>{{ tx.sign }} {{ tx.amount }}</td>
+              <td>
+                <a (click)="editTransaction(tx, searchForm.value.comment)"><i class="fa fa-pencil"></i></a>
+              </td>
+              <td>
+                <a (click)="deleteTransaction(tx.tx_id)"><i class="fa fa-trash"></i></a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="row" id="pagination">
+            <div class="col-sm-6 pagination-left">
+              toon <b>10</b> van de <b>{{ state.appData.data.page.totalElements }}</b> items
+            </div>
+            <div class="col-sm-6 pagination-right">
+              <ul class="pagination">
+                <li class="page-item pointer" [ngClass]="0 == (currentPage$ | async) ? 'disabled' : '' ">
+                  <a (click)="goToNextOrPreviousPage('backward', searchForm.value.comment)" class="page-link" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Vorige</span>
+                  </a>
+                </li>
+                <li *ngFor="let pageNumber of [].constructor(state.appData.data.page.totalPages) let i = index"
+                    class="page-item pointer" [ngClass]="i == (currentPage$ | async) ? 'active' : '' ">
+                  <a (click)="goToPage(searchForm.value.comment, i)" class="page-link"> {{ i + 1 }}</a>
+                </li>
+                <li class="page-item pointer" [ngClass]="state.appData.data.page.totalPages - 1 == (currentPage$ | async) ? 'disabled' : '' ">
+                  <a (click)="goToNextOrPreviousPage('forward', searchForm.value.comment)" class="page-link" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Volgende</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
