@@ -13,10 +13,13 @@ export class ImportService {
 
   constructor(private httpClient: HttpClient) { }
 
-  uploadTransactions(formData: FormData): Observable<HttpEvent<CustomHttpResponse<ImportResponse>>> {
-    return this.httpClient.post<CustomHttpResponse<ImportResponse>>(this.importURL, formData, {
+  uploadTransactions(file: File): Observable<HttpEvent<CustomHttpResponse<ImportResponse>>> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    return this.httpClient.post<HttpEvent<any>>(this.importURL, formData, {
       reportProgress: true,
-      observe: 'events'
+      responseType: 'json'
     });
   }
+
 }

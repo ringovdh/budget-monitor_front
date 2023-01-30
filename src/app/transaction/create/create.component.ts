@@ -4,6 +4,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {TransactionService} from "../transaction.service";
 import {Category} from "../../category/category";
 import {CategoryService} from "../../category/category.service";
+import {Transaction} from "../transaction";
 
 @Component({
   selector: 'app-create',
@@ -15,6 +16,8 @@ export class CreateComponent implements OnInit {
 
   createTransactionForm!: FormGroup;
   categories!: Category[];
+  transactions!: Transaction[];
+  transaction!: Transaction;
 
   constructor(public transactionService: TransactionService,
               public categoryService: CategoryService,
@@ -25,12 +28,12 @@ export class CreateComponent implements OnInit {
       this.categories = data;
     });
     this.createTransactionForm = new FormGroup({
-      number: new FormControl(''),
-      date: new FormControl(new Date()),
-      sign: new FormControl('+', Validators.required),
-      amount: new FormControl('', Validators.required),
-      comment: new FormControl('', Validators.required),
-      category: new FormControl('',Validators.required)
+      number: new FormControl(this.transaction ? this.transaction.number : ''),
+      date: new FormControl(this.transaction ? this.transaction.date : new Date(), Validators.required),
+      sign: new FormControl(this.transaction ? this.transaction.sign : '-', Validators.required),
+      amount: new FormControl(this.transaction ? this.transaction.amount : 0, Validators.required),
+      comment: new FormControl(this.transaction ? this.transaction.comment : '', Validators.required),
+      category: new FormControl(this.transaction ? this.transaction.category : '', Validators.required)
     });
   }
 
@@ -39,10 +42,14 @@ export class CreateComponent implements OnInit {
   }
 
   submit() {
-    this.transactionService.create(this.createTransactionForm.value).subscribe((res:any) => {
-      this.ngbActiveModal.close('closed');
-      console.log('Transaction created successfully!');
+    this.transactionService.create(this.createTransactionForm.value).subscribe(data => {
+      this.transaction = data;
+      this.transaction.date = new Date(data.date);
+      this.ngbActiveModal.close(this.transaction);
+      console.log('Transaction created successfully!', this.transaction);
     });
+
+    return this.transaction;
   }
 
   close() {

@@ -18,7 +18,13 @@
           </div>
           <div class="col-4">
             <form #searchForm="ngForm" (ngSubmit)="goToPage(searchForm.value.searchterm)" class="d-flex" role="search">
-              <input class="form-control me2" type="search" name="searchterm" ngModel placeholder="zoekterm" aria-label="search/">
+              <input
+                class="form-control me2"
+                type="search"
+                name="searchterm"
+                ngModel
+                placeholder="zoekterm"
+                aria-label="search/">
               <button class="btn" type="submit">Zoeken</button>
             </form>
           </div>

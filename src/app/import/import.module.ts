@@ -4,16 +4,20 @@ import { CommonModule } from '@angular/common';
 import { ImportRoutingModule } from './import-routing.module';
 import {ImportComponent} from "./import/import.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {BudgetModule} from "../budget/budget.module";
+import { IndexComponent } from './index/index.component';
 
 
 @NgModule({
   declarations: [
-    ImportComponent
+    ImportComponent,
+    IndexComponent
   ],
   imports: [
     CommonModule,
     ImportRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BudgetModule
   ]
 })
 export class ImportModule { }

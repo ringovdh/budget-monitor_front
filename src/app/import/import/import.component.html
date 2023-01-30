@@ -1,88 +1,39 @@
 <ng-container>
   <div class="card my-5">
-
     <div class="customPanel">
       <div class="panel-heading">
         <div class="row">
-          <div class="card-title text-center">
-            <h3>Voer nieuwe transacties in</h3>
+          <div class="col-8">
+            <div class="card-title text-center">
+              <h3>Voer nieuwe transacties in</h3>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="card-button">
+              <a (click)="createTransaction()" class="btn"><i class="fa fa-plus-circle"></i> Voeg nieuwe transactie toe</a>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="card-button">
+              <a (click)="uploadPDF()" class="btn"><i class="fa fa-plus-circle"></i> pdf opladen</a>
+            </div>
           </div>
         </div>
       </div>
-      <div class="panel-body import-panel">
-        <form enctype="multipart/form-data">
-          <fieldset>
-            <div class="form-group">
-              <label for="upload">Selecteer een bestand (PDF)</label>
-              <input
-                (change)="selectedPDFFile($event)"
-                name="upload"
-                id = "upload"
-                type="file"
-                class="form-control"
-                accept=".pdf">
-            </div>
-          </fieldset>
-        </form>
-        <div *ngIf="fileStatus.status === 'progress'">
-          <div class="progress">
-            <div [style.width.%]="fileStatus.percent" class="progress-bar progress-bar-animated bg-info" role="progressbar">
-              Uploading... {{ fileStatus.percent }}%
-            </div>
-          </div>
+      <div class="panel-body">
+        <div *ngIf="newTransactions.length === 0" class="no-transaction-panel">
+          Er zijn nog geen transacties
         </div>
-        <button class="btn uploadButton"
-                type="submit">
-          <i class="fa fa-plus-circle"></i> Transacties opladen
-        </button>
+        <div *ngIf="newTransactions.length > 0" class="new-transaction-panel">
+          <app-import-index
+            [newTransactions]="newTransactions"
+            (savedTransaction)="loadBudgetOverview($event)">
+          ></app-import-index>
+        </div>
+        <div *ngIf="budgetOverview.length > 0" class="transaction-panel">
+          <app-index [budgetOverview]="budgetOverview"></app-index>
+        </div>
       </div>
     </div>
-
-    <div  class="customPanel">
-      <div class="panel">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-8">
-                <div class="card-title text-center">
-                  <h3 >{{ numberOfTransactions }} Onbewerkte transacties</h3>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class ="card-button">
-                  <a (click)="createTransaction()" class="btn"><i class="fa fa-plus-circle"></i> Voeg nieuwe transactie toe</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="panel-body table-responsive">
-            <table class = "table table-bordered table-striped">
-              <thead>
-              <tr>
-                <th>#</th>
-                <th>Datum</th>
-                <th>Originele omschrijving</th>
-                <th>Bedrag</th>
-                <th>Categorie</th>
-                <th></th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let transaction of transactions">
-                <td>{{ transaction.number }}</td>
-                <td>{{ transaction.date | date:'d/MM/yyyy' }}</td>
-                <td>{{ transaction.originalComment }}</td>
-                <td>{{ transaction.sign }} {{ transaction.amount }}€</td>
-                <td *ngIf="transaction.category">{{transaction.category.label}}</td><td *ngIf="!transaction.category"></td>
-                <td>
-                  <ul class="action-list">
-                    <li><a (click)="openFormModal(transaction)" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
-                  </ul>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
   </div>
 </ng-container>

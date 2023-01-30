@@ -12,24 +12,30 @@ import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TransactionModule } from './transaction/transaction.module';
 import { ReactiveFormsModule } from "@angular/forms";
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
+import { ImportModalComponent } from './modal/import-modal/import-modal.component';
+import { BudgetModule } from "./budget/budget.module";
+import { BudgetTransactionsModalComponent } from './modal/budget-transactions-modal/budget-transactions-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConfirmationModalComponent,
+    ImportModalComponent,
+    BudgetTransactionsModalComponent,
   ],
     imports: [
-        BrowserModule,
-        RouterOutlet,
-        CommentModule,
-        CategoryModule,
-        ImportModule,
-        TransactionModule,
-        HttpClientModule,
-        RouterLinkWithHref,
-        NgxPaginationModule,
-        NgbModule,
-        ReactiveFormsModule
+      BrowserModule,
+      RouterOutlet,
+      CommentModule,
+      CategoryModule,
+      ImportModule,
+      TransactionModule,
+      BudgetModule,
+      HttpClientModule,
+      RouterLinkWithHref,
+      NgxPaginationModule,
+      NgbModule,
+      ReactiveFormsModule
     ],
   providers: [NgbActiveModal],
   bootstrap: [AppComponent]

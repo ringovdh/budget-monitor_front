@@ -46,6 +46,7 @@
                 <th>Vaste Kost</th>
                 <th>Opnemen in details</th>
                 <th>Opnemen in monitoring</th>
+                <th>Inkomst</th>
                 <th>Limietbedrag</th>
                 <th><i class="fa fa-pencil"></i></th>
                 <th><i class="fa fa-trash"></i></th>
@@ -63,6 +64,9 @@
                 </td>
                 <td>
                   <i [ngClass]="{'fa fa-check':cat.inmonitor === true}"></i>
+                </td>
+                <td>
+                  <i [ngClass]="{'fa fa-check':cat.revenue === true}"></i>
                 </td>
                 <td>{{ cat.limitamount }}€</td>
                 <td>

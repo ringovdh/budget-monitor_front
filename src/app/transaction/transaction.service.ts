@@ -4,7 +4,7 @@ import {Transaction} from "./transaction";
 import {Observable} from "rxjs";
 import {CustomHttpResponse} from "../entity/customHttpResponse";
 import {Page} from "../entity/page";
-import {Comment} from "../comment/comment";
+import {BudgetOverviewPerCategory} from "../entity/BudgetOverviewPerCategory";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,11 @@ export class TransactionService {
 
   transactions$ = (comment: string = '', page: number = 0, size: number = 10): Observable<CustomHttpResponse<Page<Transaction>>> =>
     this.httpClient.get<CustomHttpResponse<Page<Transaction>>>(`${this.apiURL}/comment?comment=${comment}&page=${page}&size=${size}`);
+
+  getBudgetOverviewByPeriod(date: Date): Observable<BudgetOverviewPerCategory[]> {
+    console.log('date: ', date);
+    return this.httpClient.get<BudgetOverviewPerCategory[]>(`${this.apiURL}/period?period=${date}`);
+  }
 
   create(transaction: Transaction): Observable<Transaction> {
     this.printMe(transaction);

@@ -1,6 +1,10 @@
 import { Transaction } from "../transaction/transaction";
+import {BudgetOverviewPerCategory} from "../entity/BudgetOverviewPerCategory";
 
 export interface ImportResponse {
-  filteredTransactions: Transaction[] ;
-  existingTransactions: Transaction[] ;
+  newTransactions: Transaction[] ;
+  existingTransactions: BudgetOverviewPerCategory[] ;
+
+
+
 }

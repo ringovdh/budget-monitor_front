@@ -26,7 +26,6 @@ export class IndexComponent implements OnInit {
   private currentPageSubject = new BehaviorSubject<number>(0);
   currentPage$ = this.currentPageSubject.asObservable();
   categories: Category[] = [];
-  p: number = 1;
   totalCategories: number = 0;
 
   constructor(public categoryService: CategoryService,
@@ -37,7 +36,6 @@ export class IndexComponent implements OnInit {
       map((response: CustomHttpResponse<Page<Category>>) => {
         this.responseSubject.next(response);
         this.currentPageSubject.next(response.data.page.number);
-        console.log(response);
         return { appState: 'APP_LOADED', appData: response }
       }),
       startWith({appState: 'APP_LOADING'}),
@@ -50,7 +48,6 @@ export class IndexComponent implements OnInit {
       map((response: CustomHttpResponse<Page<Category>>) => {
         this.responseSubject.next(response);
         this.currentPageSubject.next(pageNumber);
-        console.log(response);
         return { appState: 'APP_LOADED', appData: response }
       }),
       startWith({appState: 'APP_LOADED', appData: this.responseSubject.value}),

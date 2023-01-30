@@ -4,7 +4,7 @@
 body {
   background-color: #f5f7f8;
   font-family: 'system-ui',-apple-system, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .navbar {
@@ -20,7 +20,7 @@ body {
 .navbar .nav-link {
   color: #9eb1bb;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .nav-item a:hover {
@@ -28,6 +28,18 @@ body {
 }
 
 h3 {
-  font-size: 18px;
+  font-size: 18px !important;
   font-weight: bold;
+}
+
+.form-control {
+  font-size: 14px !important;
+}
+
+.form-select {
+  font-size: 14px !important;
+}
+
+.page-link {
+  font-size: 14px !important;
 }

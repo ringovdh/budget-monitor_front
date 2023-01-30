@@ -49,7 +49,7 @@ export class IndexComponent implements OnInit {
       map((response: CustomHttpResponse<Page<Transaction>>) => {
         this.responseSubject.next(response);
         this.currentPageSubject.next(pageNumber);
-        console.log(response);
+        console.log('go to page: ', response);
         return { appState: 'APP_LOADED', appData: response }
       }),
       startWith({appState: 'APP_LOADED', appData: this.responseSubject.value}),
@@ -71,14 +71,15 @@ export class IndexComponent implements OnInit {
     });
   }
 
-  deleteTransaction(id: number) {
+  deleteTransaction(id: number, comment?: string) {
     const modalRef = this.modalService.open(ConfirmationModalComponent);
     modalRef.result.then((result) => {
       if (result === 'confirmed') {
         this.transactionService.delete(id).subscribe(() => {
           this.transactions = this.transactions.filter(item => item.tx_id !== id);
           console.log('Transaction deleted successfully!');
-        })
+          this.goToPage(comment, 0);
+        });
       }
     });
   }

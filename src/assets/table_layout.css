@@ -5,7 +5,7 @@
 .customTable thead tr th{
   color: #f5f7f8;
   background: #303e45;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
   padding: 12px;
   border-bottom: none;
@@ -14,7 +14,7 @@
 .customTable tbody tr td{
   color: #555;
   background: #f5f7f8;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
   padding: 13px;
   vertical-align: middle;
@@ -33,7 +33,7 @@
 #pagination {
   color: #f5f7f8;
   background: #7d97a5;
-  font-size: 17px;
+  font-size: 15px;
   line-height: 33px;
   padding: 25px 15px;
   border-radius: 0 0 8px 8px;

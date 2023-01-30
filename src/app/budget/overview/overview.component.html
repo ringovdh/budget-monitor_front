@@ -1,0 +1,39 @@
+<div class="card my-5">
+  <div class="customPanel">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-6">
+          <div class="card-title text-center">
+            <h3>Budget maandoverzicht</h3>
+          </div>
+        </div>
+        <div class="col-6">
+          <form #getBudgetOverviewForm="ngForm" (ngSubmit)="submit(getBudgetOverviewForm.value)" class="d-flex" role="search">
+            <select
+              class="form-select"
+              name="month"
+              ngModel
+              aria-label="search/">
+              <option value="" disabled selected>kies een maand</option>
+              <option *ngFor="let month of months"
+                      [ngValue]="month.value">{{ month.name }}</option>
+            </select>
+            <select
+              class="form-select"
+              name="year"
+              ngModel
+              aria-label="search/">
+              <option value="" disabled selected>kies een jaartal</option>
+              <option *ngFor="let year of years"
+                      [ngValue]="year">{{ year }}</option>
+            </select>
+            <button class="btn" type="submit">Zoeken</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <app-index [budgetOverview]="budgetOverview"></app-index>
+    </div>
+  </div>
+</div>

@@ -7,10 +7,11 @@ import {CreateComponent} from "../../transaction/create/create.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {BehaviorSubject, catchError, map, Observable, of, startWith} from "rxjs";
 import {CustomHttpResponse} from "../../entity/customHttpResponse";
-import {HttpErrorResponse, HttpEvent, HttpEventType, HttpResponse} from "@angular/common/http";
-import {ImportHttpResponse} from "../../entity/importHttpResponse";
-import {Page} from "../../entity/page";
-import {Comment} from "../../comment/comment";
+import {BudgetOverviewPerCategory} from "../../entity/BudgetOverviewPerCategory";
+import {HttpErrorResponse, HttpEvent, HttpEventType} from "@angular/common/http";
+import {ImportModalComponent} from "../../modal/import-modal/import-modal.component";
+import {TransactionService} from "../../transaction/transaction.service";
+import {BudgetService} from "../../budget/budget.service";
 
 @Component({
   selector: 'app-import',
@@ -25,18 +26,22 @@ export class ImportComponent implements OnInit {
 
   uploadForm!: FormGroup;
   selectedFile: null;
-  transactions: Transaction[];
+  transactions: Transaction[] = [];
   transaction: Transaction;
-  numberOfTransactions: number;
+  numberOfTransactions = 0;
   submitted = false;
   infoTxSaldo = 0;
   p:number = 1;
   fileStatus = {status: '', requestType: '', percent: 0}
+  budgetOverview: BudgetOverviewPerCategory[] = [];
+  newTransactions: Transaction[] = [];
   importState$: Observable<{appState: string, appData?:any, error?:HttpErrorResponse}>;
   responseSubject = new BehaviorSubject<CustomHttpResponse<ImportResponse>>(null);
 
 
   constructor(public importService: ImportService,
+              public transactionService: TransactionService,
+              public budgetService: BudgetService,
               public modalService: NgbModal) { }
 
   ngOnInit() {
@@ -80,10 +85,21 @@ export class ImportComponent implements OnInit {
 
   createTransaction(){
     const modalRef = this.modalService.open(CreateComponent);
-    modalRef.result.then((result) => {
-      if (result) {
 
+    modalRef.result.then((result) => {
+      if (result === 'saved') {
+        modalRef.close();
+        this.loadBudgetOverview(modalRef.componentInstance.transaction);
       }
+    });
+  }
+
+  loadBudgetOverview(transaction: Transaction) {
+    console.log('tx: ', transaction);
+    let date = new Date(transaction.date);
+    this.budgetService.getBudgetOverviewByPeriod(date.getMonth()+1, date.getFullYear()).subscribe(data => {
+      this.budgetOverview = data;
+      console.log('load: ', this.budgetOverview);
     });
 
   }
@@ -116,5 +132,15 @@ export class ImportComponent implements OnInit {
     this.fileStatus.status = 'progress';
     this.fileStatus.requestType = uploading;
     this.fileStatus.percent = Math.round(100 * loaded/total);
+  }
+
+  uploadPDF() {
+    const modalRef = this.modalService.open(ImportModalComponent);
+    modalRef.result.then((result) => {
+      if (result) {
+        this.budgetOverview = result.data.import.existingTransactions;
+        this.newTransactions = result.data.import.newTransactions;
+      }
+    });
   }
 }

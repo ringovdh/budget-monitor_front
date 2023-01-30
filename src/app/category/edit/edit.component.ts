@@ -25,6 +25,7 @@ export class EditComponent implements OnInit {
       fixedcost: new FormControl(this.category.fixedcost),
       indetails: new FormControl(this.category.indetails),
       inmonitor: new FormControl(this.category.inmonitor),
+      revenue: new FormControl(this.category.revenue),
       limitamount: new FormControl(this.category.limitamount)
     });
   }

@@ -57,7 +57,7 @@
                 <a (click)="editTransaction(tx, searchForm.value.comment)"><i class="fa fa-pencil"></i></a>
               </td>
               <td>
-                <a (click)="deleteTransaction(tx.tx_id)"><i class="fa fa-trash"></i></a>
+                <a (click)="deleteTransaction(tx.tx_id, searchForm.value.comment)"><i class="fa fa-trash"></i></a>
               </td>
             </tr>
             </tbody>

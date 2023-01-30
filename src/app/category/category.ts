@@ -3,7 +3,9 @@ export interface Category {
   icon: string
   label: string;
   fixedcost: boolean;
+  saving: boolean;
   indetails: boolean;
   inmonitor: boolean;
   limitamount: number;
+  revenue: boolean;
 }

@@ -46,6 +46,12 @@
         <div *ngIf="f['amount'].errors && f['amount'].errors['required']">Bedrag is verplicht.</div>
       </div>
     </div>
+    <div *ngIf="!transaction.comment" class="form-group">
+      <label for="comment">Omschrijving:</label>
+      <div>
+        {{ transaction.originalComment}}
+      </div>
+    </div>
     <div class="form-group">
       <label for="comment">Omschrijving:</label>
       <input
