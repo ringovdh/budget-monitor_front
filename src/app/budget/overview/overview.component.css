@@ -1,0 +1,28 @@
+.no-budget-overview {
+  margin: 5px;
+}
+
+.total-budget-card {
+  border-left: 8px solid #303e45;
+  background-color: #f1f4f5;
+  margin: 5px;
+}
+
+.total-savings-budget-card {
+  border-left: 8px solid #303e45;
+  background-color: #f1f4f5;
+  margin: 5px;
+  height: 156px;
+}
+
+.end-total-budget-card {
+  border-left: 8px solid #303e45;
+  background-color: #f1f4f5;
+  margin: 5px;
+  text-align: center;
+}
+
+.total-budget-icon {
+  font-size: 25px;
+  color: #303e45;
+}

@@ -5,13 +5,16 @@ import { BudgetRoutingModule } from './budget-routing.module';
 import { IndexComponent } from "./index/index.component";
 import { OverviewComponent } from './overview/overview.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BudgetComponent } from './budget/budget.component';
+import { GraphsComponent } from './graphs/graphs.component';
 
 
 @NgModule({
-  declarations: [IndexComponent, OverviewComponent],
-  exports: [
-    IndexComponent
-  ],
+  declarations: [IndexComponent, OverviewComponent, BudgetComponent, GraphsComponent],
+    exports: [
+        IndexComponent,
+        OverviewComponent
+    ],
   imports: [
     CommonModule,
     BudgetRoutingModule,

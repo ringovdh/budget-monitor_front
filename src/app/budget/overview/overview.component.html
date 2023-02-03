@@ -1,39 +1,124 @@
-<div class="card my-5">
-  <div class="customPanel">
-    <div class="panel-heading">
-      <div class="row">
-        <div class="col-6">
-          <div class="card-title text-center">
-            <h3>Budget maandoverzicht</h3>
+<ng-container *ngIf="budgetOverview.length === 0">
+  <div class="no-budget-overview">Selecteer eerst een maand en jaartal.</div>
+</ng-container>
+<ng-container *ngIf="budgetOverview.length > 0">
+  <div class="budgetOverview-resume">
+    <div class="custom-child-panel">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-12">
+            <div class="card-title text-center">
+              <h3>budgetresultaten</h3>
+            </div>
           </div>
         </div>
-        <div class="col-6">
-          <form #getBudgetOverviewForm="ngForm" (ngSubmit)="submit(getBudgetOverviewForm.value)" class="d-flex" role="search">
-            <select
-              class="form-select"
-              name="month"
-              ngModel
-              aria-label="search/">
-              <option value="" disabled selected>kies een maand</option>
-              <option *ngFor="let month of months"
-                      [ngValue]="month.value">{{ month.name }}</option>
-            </select>
-            <select
-              class="form-select"
-              name="year"
-              ngModel
-              aria-label="search/">
-              <option value="" disabled selected>kies een jaartal</option>
-              <option *ngFor="let year of years"
-                      [ngValue]="year">{{ year }}</option>
-            </select>
-            <button class="btn" type="submit">Zoeken</button>
-          </form>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-9">
+            <div class="row">
+              <div class="col-4">
+                <div class="card total-budget-card">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="budgetOverview-label">Totaal inkomst:</div>
+                        <div class="budgetOverview-amount">{{ totalIncome | number : '1.2-2'}} €</div>
+                      </div>
+                      <div class="col-auto total-budget-icon">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="card total-budget-card">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="budgetOverview-label">Totaal vaste kost:</div>
+                        <div class="budgetOverview-amount">{{ totalFixedCost | number : '1.2-2'}} €</div>
+                      </div>
+                      <div class="col-auto total-budget-icon">
+                        <i class="fa-solid fa-arrow-trend-down"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="card total-budget-card">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="budgetOverview-label">Totaal uitgaven:</div>
+                        <div class="budgetOverview-amount">{{ totalOutgoing | number : '1.2-2'}} €</div>
+                      </div>
+                      <div class="col-auto total-budget-icon">
+                        <i class="fa-solid fa-arrow-trend-down"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="card end-total-budget-card">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="budgetOverview-label">Eind bedrag:</div>
+                        <div class="budgetOverview-amount">{{ totalAmount | number : '1.2-2'}} €</div>
+                      </div>
+                      <div class="col-auto total-budget-icon">
+                        <i *ngIf= "totalAmount > 0" class="fa fa-circle-up"></i>
+                        <i *ngIf= "totalAmount < 0" class="fa fa-circle-down"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card total-savings-budget-card">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="budgetOverview-label">Sparen:</div>
+                    <div class="budgetOverview-amount">{{ totalSavings | number : '1.2-2'}} €</div>
+                  </div>
+                  <div class="col-auto total-budget-icon">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="panel-body">
-      <app-index [budgetOverview]="budgetOverview"></app-index>
-    </div>
+
+    <ng-container>
+      <div class="custom-child-panel">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-index-tab" data-bs-toggle="tab" data-bs-target="#nav-index" type="button" role="tab" aria-controls="nav-index" aria-selected="true">transacties</button>
+            <button class="nav-link" id="nav-graphs-tab" data-bs-toggle="tab" data-bs-target="#nav-graphs" type="button" role="tab" aria-controls="nav-graphs" aria-selected="false">grafiek</button>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-index" role="tabpanel" aria-labelledby="nav-index-tab">
+            <app-index [incomingBudget]="incomingBudget"
+                       [outgoingBudget]="outgoingBudget"
+                       [fixedOutgoingBudget]="fixedOutgoingBudget"
+                       [savings]="savings"></app-index>
+          </div>
+          <div class="tab-pane fade" id="nav-graphs" role="tabpanel" aria-labelledby="nav-graphs-tab">
+            <app-graphs></app-graphs>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
-</div>
+</ng-container>

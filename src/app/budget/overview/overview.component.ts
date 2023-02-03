@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {BudgetOverviewPerCategory} from "../../entity/BudgetOverviewPerCategory";
-import {BudgetService} from "../budget.service";
 
 @Component({
   selector: 'app-overview',
@@ -8,55 +7,47 @@ import {BudgetService} from "../budget.service";
   styleUrls: ['./overview.component.css',
     '../../../assets/panel_layout.css']
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent implements OnChanges {
 
-  budgetOverview: BudgetOverviewPerCategory[] = [];
-  months: {value:number, name: string}[];
-  years: number[];
+  @Input() budgetOverview: BudgetOverviewPerCategory[] = [];
+  incomingBudget: BudgetOverviewPerCategory[] = [];
+  outgoingBudget: BudgetOverviewPerCategory[] = [];
+  fixedOutgoingBudget: BudgetOverviewPerCategory[] = [];
+  savings: BudgetOverviewPerCategory[] = [];
+  totalIncome: number = 0;
+  totalFixedCost: number = 0;
+  totalOutgoing: number = 0;
+  totalSavings: number = 0;
+  totalAmount: number = 0;
 
-  constructor(public budgetService: BudgetService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.prepareMonths();
-    this.prepareYears();
+  ngOnChanges(changes: SimpleChanges) {
+    this.fixedOutgoingBudget = this.budgetOverview.filter(o => o.category.fixedcost);
+    this.incomingBudget = this.budgetOverview.filter(o => o.category.revenue);
+    this.savings = this.budgetOverview.filter(o => o.category.saving);
+    this.outgoingBudget = this.budgetOverview.filter(o => (!o.category.fixedcost && !o.category.revenue && !o.category.saving));
+    this.countTotals();
   }
 
-  submit(periode: any) {
-    this.budgetService.getBudgetOverviewByPeriod(periode.month, periode.year).subscribe((data) => {
-      this.budgetOverview = data;
-      console.log('data: ', data)
-    });
+  countTotals() {
+    this.resetTotals();
+    this.totalIncome = this.incomingBudget.map(o => o.total).reduce((a, c) => { return a + c }, 0);
+    this.totalFixedCost = this.fixedOutgoingBudget.map(o => o.total).reduce((a, c) => { return a + c }, 0);
+    this.totalOutgoing = this.outgoingBudget.map(o => o.total).reduce((a, c) => { return a + c }, 0);
+    this.totalSavings = -this.savings.map(o => o.total).reduce((a, c) => { return a + c }, 0);
+
+    this.totalAmount = this.totalIncome
+      - Math.abs(this.totalFixedCost)
+      - Math.abs(this.totalOutgoing);
   }
 
-  private prepareMonths() {
-    this.months = [
-      { value: 1, name: 'januari' },
-      { value: 2, name: 'februari' },
-      { value: 3, name: 'maart' },
-      { value: 4, name: 'april' },
-      { value: 5, name: 'mei' },
-      { value: 6, name: 'juni' },
-      { value: 7, name: 'juli' },
-      { value: 8, name: 'augustus' },
-      { value: 9, name: 'september' },
-      { value: 10, name: 'oktober' },
-      { value: 11, name: 'november' },
-      { value: 12, name: 'december' },
-    ];
+  resetTotals() {
+    this.totalIncome = 0;
+    this.totalOutgoing = 0;
+    this.totalFixedCost = 0;
+    this.totalSavings = 0;
+    this.totalAmount = 0;
   }
 
-  private prepareYears() {
-    this.years = [
-      2016,
-      2017,
-      2018,
-      2019,
-      2020,
-      2021,
-      2022,
-      2023,
-      2024,
-      2025
-    ];
-  }
 }

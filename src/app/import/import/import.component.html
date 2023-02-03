@@ -28,10 +28,10 @@
           <app-import-index
             [newTransactions]="newTransactions"
             (savedTransaction)="loadBudgetOverview($event)">
-          ></app-import-index>
+          </app-import-index>
         </div>
         <div *ngIf="budgetOverview.length > 0" class="transaction-panel">
-          <app-index [budgetOverview]="budgetOverview"></app-index>
+          <app-overview [budgetOverview]="budgetOverview"></app-overview>
         </div>
       </div>
     </div>
