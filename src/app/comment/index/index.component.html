@@ -1,5 +1,5 @@
 <ng-container *ngIf="(commentsState$ | async) as state" [ngSwitch]="state.appState">
-  <div class="card my-5">
+  <div class="card my-2">
     <ng-container *ngSwitchCase="'APP_ERROR'">
       <div class="errorPanel">
         <div class="alert alert-danger " role="alert">

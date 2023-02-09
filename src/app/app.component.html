@@ -1,32 +1,48 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <nav class="navbar">
-        <span class="navbar-brand h1">Budget monitor</span>
-        <ul class="nav justify-content-end">
-          <li class="nav-item">
-            <a href="#" class="nav-link" routerLink="'/savings'">Spaarpot</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" routerLink="/budget/budget">Budget</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" routerLink="/transaction/index">Transacties</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" routerLink="/import/import">Invoer</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Configuratie
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a href="#" class="dropdown-item" routerLink="/category/index">Categorieën</a></li>
-              <li><a href="#" class="dropdown-item" routerLink="/comment/index">Commentaar</a></li>
-            </ul>
-        </ul>
+  <nav class="navbar navbar-inverse navbar-fixed-top navbar-no-bg">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand h1" href="http://localhost:4200">Budget monitor</a>
+          </div>
+          <div class="navbar-links">
+            <ul class="nav">
+              <li>
+                <a class="nav-link" routerLink="'/savings'">
+                  <i class="fa fa-piggy-bank"></i>
+                  <span>Spaarpot</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link" routerLink="/budget/budget">
+                  <i class="fa fa-coins"></i>
+                  <span>Budget</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link" routerLink="/transaction/index">
+                  <i class="fa fa-wallet"></i>
+                  <span>Transacties</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link" routerLink="/import/import">
+                  <i class="fa fa-file-upload"></i>
+                  <span>Invoer</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa fa-tools"></i>
+                  <span>Configuratie</span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" routerLink="/category/index">Categorieën</a></li>
+                  <li><a class="dropdown-item" routerLink="/comment/index">Commentaar</a></li>
+                </ul>
+              </ul>
+          </div>
+        </div>
       </nav>
       <router-outlet></router-outlet>
     </div>
-  </div>
-</div>
+

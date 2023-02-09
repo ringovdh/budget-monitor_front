@@ -8,8 +8,8 @@ body {
 }
 
 .navbar {
-  background-color: #303e45;
-  color: #f5f7f8;
+  background-color: #f5f7f8;
+  color: #303e45;
 }
 
 .navbar-brand {
@@ -17,10 +17,37 @@ body {
   font-size: 36px;
 }
 
+.navbar-links ul.nav li a i {
+  font-size: 28px;
+}
+
+.navbar-links ul.nav li a span {
+  display: inline-block;
+  width: 100%;
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.navbar-links ul.nav li {
+  margin: 0 2px 0 2px;
+}
+
+.navbar-links ul.nav li a {
+  border-radius: 5px;
+}
+
+.navbar-links ul.nav li a:hover {
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
+}
+
 .navbar .nav-link {
   color: #9eb1bb;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
+  text-align: center;
+  padding: 5px;
 }
 
 .nav-item a:hover {
