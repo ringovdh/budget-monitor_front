@@ -1,8 +1,10 @@
 <div class="container">
   <nav class="navbar navbar-inverse navbar-fixed-top navbar-no-bg">
         <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand h1" href="http://localhost:4200">Budget monitor</a>
+          <div class="navbar-header" style="width: 20%">
+            <a class="navbar-brand h1" href="http://localhost:4200">
+              <img src="assets/logo.png" style="width: 155%">
+            </a>
           </div>
           <div class="navbar-links">
             <ul class="nav">
@@ -19,10 +21,13 @@
                 </a>
               </li>
               <li>
-                <a class="nav-link" routerLink="/transaction/index">
+                <a class="nav-link" id="TransactiesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="fa fa-wallet"></i>
                   <span>Transacties</span>
                 </a>
+                <ul class="dropdown-menu" aria-labelledby="configuratieDropdown">
+                  <li><a class="dropdown-item" routerLink="/transaction/index">per categorie</a></li>
+                </ul>
               </li>
               <li>
                 <a class="nav-link" routerLink="/import/import">
@@ -31,11 +36,11 @@
                 </a>
               </li>
               <li>
-                <a class="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link" id="configuratieDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="fa fa-tools"></i>
                   <span>Configuratie</span>
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul class="dropdown-menu" aria-labelledby="configuratieDropdown">
                   <li><a class="dropdown-item" routerLink="/category/index">Categorieën</a></li>
                   <li><a class="dropdown-item" routerLink="/comment/index">Commentaar</a></li>
                 </ul>
