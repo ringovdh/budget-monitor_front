@@ -23,4 +23,5 @@ import { EditComponent } from './edit/edit.component';
     NgxPaginationModule
   ]
 })
+
 export class TransactionModule { }

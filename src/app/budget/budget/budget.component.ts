@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BudgetOverviewPerCategory} from "../../entity/BudgetOverviewPerCategory";
+import {BudgetOverviewPerMonth} from "../../entity/BudgetOverviewPerMonth";
 import {BudgetService} from "../budget.service";
 
 @Component({
@@ -10,7 +10,7 @@ import {BudgetService} from "../budget.service";
 })
 export class BudgetComponent implements OnInit {
 
-  budgetOverview: BudgetOverviewPerCategory[] = [];
+  budgetOverview: BudgetOverviewPerMonth[] = [];
   months: {value:number, name: string}[];
   years: number[];
 

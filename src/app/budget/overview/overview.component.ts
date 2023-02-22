@@ -1,5 +1,5 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {BudgetOverviewPerCategory} from "../../entity/BudgetOverviewPerCategory";
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {BudgetOverviewPerMonth} from "../../entity/BudgetOverviewPerMonth";
 
 @Component({
   selector: 'app-overview',
@@ -9,11 +9,11 @@ import {BudgetOverviewPerCategory} from "../../entity/BudgetOverviewPerCategory"
 })
 export class OverviewComponent implements OnChanges {
 
-  @Input() budgetOverview: BudgetOverviewPerCategory[] = [];
-  incomingBudget: BudgetOverviewPerCategory[] = [];
-  outgoingBudget: BudgetOverviewPerCategory[] = [];
-  fixedOutgoingBudget: BudgetOverviewPerCategory[] = [];
-  savings: BudgetOverviewPerCategory[] = [];
+  @Input() budgetOverview: BudgetOverviewPerMonth[] = [];
+  incomingBudget: BudgetOverviewPerMonth[] = [];
+  outgoingBudget: BudgetOverviewPerMonth[] = [];
+  fixedOutgoingBudget: BudgetOverviewPerMonth[] = [];
+  savings: BudgetOverviewPerMonth[] = [];
   totalIncome: number = 0;
   totalFixedCost: number = 0;
   totalOutgoing: number = 0;

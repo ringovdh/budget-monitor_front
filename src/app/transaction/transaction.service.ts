@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {CustomHttpResponse} from "../entity/customHttpResponse";
 import {Page} from "../entity/page";
 import {BudgetOverviewPerCategory} from "../entity/BudgetOverviewPerCategory";
+import { BudgetHttpResponse } from '../entity/budgetHttpResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -22,13 +23,19 @@ export class TransactionService {
 
   constructor(private httpClient: HttpClient) { }
 
-  transactions$ = (comment: string = '', page: number = 0, size: number = 10): Observable<CustomHttpResponse<Page<Transaction>>> =>
-    this.httpClient.get<CustomHttpResponse<Page<Transaction>>>(`${this.apiURL}/comment?comment=${comment}&page=${page}&size=${size}`);
+  transactions$ = (category: number = 0, year: string = '0' , page: number = 0, size: number = 10): Observable<CustomHttpResponse<Page<Transaction>>> =>
+    this.httpClient.get<CustomHttpResponse<Page<Transaction>>>(`${this.apiURL}/category?categoryId=${category}&year=${year}&page=${page}&size=${size}`);
 
   getBudgetOverviewByPeriod(date: Date): Observable<BudgetOverviewPerCategory[]> {
     console.log('date: ', date);
     return this.httpClient.get<BudgetOverviewPerCategory[]>(`${this.apiURL}/period?period=${date}`);
   }
+
+  getBudgetOverviewByCategory(category: number, year: string): Observable<BudgetOverviewPerCategory[]> {
+    console.log('category: ', category);
+    return this.httpClient.get<BudgetOverviewPerCategory[]>(`${this.apiURL}/category?categoryId=${category}&year=${year}`);
+  }
+
 
   create(transaction: Transaction): Observable<Transaction> {
     this.printMe(transaction);

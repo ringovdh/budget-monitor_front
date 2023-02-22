@@ -23,7 +23,7 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="budgetOverview-label">Totaal inkomst:</div>
-                        <div class="budgetOverview-amount">{{ totalIncome | number : '1.2-2'}} €</div>
+                        <div class="budgetOverview-amount">{{ totalIncome | number:'1.2-2':'be-BE'}} €</div>
                       </div>
                       <div class="col-auto total-budget-icon">
                         <i class="fa-solid fa-arrow-trend-up"></i>
@@ -38,7 +38,7 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="budgetOverview-label">Totaal vaste kost:</div>
-                        <div class="budgetOverview-amount">{{ totalFixedCost | number : '1.2-2'}} €</div>
+                        <div class="budgetOverview-amount">{{ totalFixedCost | number:'1.2-2':'be-BE'}} €</div>
                       </div>
                       <div class="col-auto total-budget-icon">
                         <i class="fa-solid fa-arrow-trend-down"></i>
@@ -53,7 +53,7 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="budgetOverview-label">Totaal uitgaven:</div>
-                        <div class="budgetOverview-amount">{{ totalOutgoing | number : '1.2-2'}} €</div>
+                        <div class="budgetOverview-amount">{{ totalOutgoing | number:'1.2-2':'be-BE'}} €</div>
                       </div>
                       <div class="col-auto total-budget-icon">
                         <i class="fa-solid fa-arrow-trend-down"></i>
@@ -68,7 +68,7 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="budgetOverview-label">Eind bedrag:</div>
-                        <div class="budgetOverview-amount">{{ totalAmount | number : '1.2-2'}} €</div>
+                        <div class="budgetOverview-amount">{{ totalAmount | number:'1.2-2':'be-BE'}} €</div>
                       </div>
                       <div class="col-auto total-budget-icon">
                         <i *ngIf= "totalAmount > 0" class="fa fa-circle-up"></i>
@@ -86,7 +86,7 @@
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
                     <div class="budgetOverview-label">Sparen:</div>
-                    <div class="budgetOverview-amount">{{ totalSavings | number : '1.2-2'}} €</div>
+                    <div class="budgetOverview-amount">{{ totalSavings | number:'1.2-2':'be-BE'}} €</div>
                   </div>
                   <div class="col-auto total-budget-icon">
                     <i class="fa-solid fa-arrow-trend-up"></i>

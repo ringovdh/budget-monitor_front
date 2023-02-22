@@ -13,7 +13,7 @@
         <div class="col-9 mr-2">
           <div class="budgetOverview-number">{{ tx.number }}</div>
           <div class="budgetOverview-label">{{ tx.comment }}</div>
-          <div class="budgetOverview-amount"> {{ tx.sign }} {{ tx.amount }} €</div>
+          <div class="budgetOverview-amount"> {{ tx.sign }} {{ tx.amount | number:'1.2-2':'be-BE'}} €</div>
         </div>
       </div>
     </div>

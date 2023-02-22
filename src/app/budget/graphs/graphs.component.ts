@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import { Chart } from 'chart.js/auto';
-import { BudgetOverviewPerCategory } from 'src/app/entity/BudgetOverviewPerCategory';
+import { BudgetOverviewPerMonth } from 'src/app/entity/BudgetOverviewPerMonth';
 
 @Component({
   selector: 'app-graphs',
@@ -12,8 +12,8 @@ export class GraphsComponent implements OnChanges {
 
   fixedOutgoingBudgetPieChart: any;
   outgoingBudgetPieChart: any;
-  @Input() fixedOutgoingBudget: BudgetOverviewPerCategory[] = [];
-  @Input() outgoingBudget: BudgetOverviewPerCategory[] = [];
+  @Input() fixedOutgoingBudget: BudgetOverviewPerMonth[] = [];
+  @Input() outgoingBudget: BudgetOverviewPerMonth[] = [];
 
   constructor() {
   }

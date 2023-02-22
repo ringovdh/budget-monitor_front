@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { registerLocaleData } from '@angular/common';
+import localeBE from '@angular/common/locales/be';
+
 import { AppComponent } from './app.component';
 import { RouterLinkWithHref, RouterOutlet } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
@@ -15,7 +18,7 @@ import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmat
 import { ImportModalComponent } from './modal/import-modal/import-modal.component';
 import { BudgetModule } from "./budget/budget.module";
 import { BudgetTransactionsModalComponent } from './modal/budget-transactions-modal/budget-transactions-modal.component';
-
+import { TransactionsPerCategoryModule } from './transaction-per-category/transactionsPerCategory.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +34,7 @@ import { BudgetTransactionsModalComponent } from './modal/budget-transactions-mo
       ImportModule,
       TransactionModule,
       BudgetModule,
+      TransactionsPerCategoryModule,
       HttpClientModule,
       RouterLinkWithHref,
       NgxPaginationModule,
@@ -40,4 +44,7 @@ import { BudgetTransactionsModalComponent } from './modal/budget-transactions-mo
   providers: [NgbActiveModal],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
+
+registerLocaleData(localeBE, 'be');

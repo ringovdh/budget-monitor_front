@@ -3,33 +3,35 @@
     <div class="row">
       <div class="col-6">
         <div class="card-title text-center">
-          <h3>Budget maandoverzicht</h3>
+          <h3>Overzicht transacties per categorie</h3>
         </div>
       </div>
       <div class="col-6">
-        <form #getBudgetOverviewForm="ngForm" (ngSubmit)="submit(getBudgetOverviewForm.value)" class="d-flex" role="search">
+        <form #searchForm="ngForm" (ngSubmit)="submit(searchForm.value.category, searchForm.value.year)" class="d-flex" role="search">
           <select
             class="form-select"
-            name="month"
+            name="category"
             ngModel
             aria-label="search/">
-            <option value="" disabled selected>kies een maand</option>
-            <option *ngFor="let month of months"
-                    [ngValue]="month.value">{{ month.name }}</option>
+            <option value="" disabled selected>kies een categorie</option>
+            <option *ngFor="let cat of categories"
+                    [ngValue]="cat.id">{{ cat.label }}</option>
           </select>
           <select
             class="form-select"
             name="year"
             ngModel
             aria-label="search/">
-            <option value="" disabled selected>kies een jaartal</option>
+            <option value="" selected>Alle jaren</option>
             <option *ngFor="let year of years"
-                    [ngValue]="year">{{ year }}</option>
+                    [ngValue]="year.value">{{ year.year }}</option>
           </select>
           <button class="btn" type="submit">Zoeken</button>
         </form>
       </div>
     </div>
   </div>
-  <app-overview [budgetOverview]="budgetOverview"></app-overview>
+  <div class="panel-body">
+    <app-overview [budgetOverview] = budgetOverview></app-overview>
+  </div>
 </div>

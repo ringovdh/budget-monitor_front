@@ -7,7 +7,7 @@ import {CreateComponent} from "../../transaction/create/create.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {BehaviorSubject, catchError, map, Observable, of, startWith} from "rxjs";
 import {CustomHttpResponse} from "../../entity/customHttpResponse";
-import {BudgetOverviewPerCategory} from "../../entity/BudgetOverviewPerCategory";
+import {BudgetOverviewPerMonth} from "../../entity/BudgetOverviewPerMonth";
 import {HttpErrorResponse, HttpEvent, HttpEventType} from "@angular/common/http";
 import {ImportModalComponent} from "../../modal/import-modal/import-modal.component";
 import {TransactionService} from "../../transaction/transaction.service";
@@ -33,7 +33,7 @@ export class ImportComponent implements OnInit {
   infoTxSaldo = 0;
   p:number = 1;
   fileStatus = {status: '', requestType: '', percent: 0}
-  budgetOverview: BudgetOverviewPerCategory[] = [];
+  budgetOverview: BudgetOverviewPerMonth[] = [];
   newTransactions: Transaction[] = [];
   importState$: Observable<{appState: string, appData?:any, error?:HttpErrorResponse}>;
   responseSubject = new BehaviorSubject<CustomHttpResponse<ImportResponse>>(null);

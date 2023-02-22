@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {BudgetOverviewPerCategory} from "../../entity/BudgetOverviewPerCategory";
+import {BudgetOverviewPerMonth} from "../../entity/BudgetOverviewPerMonth";
 
 @Component({
   selector: 'app-budget-transactions-modal',
@@ -10,7 +10,7 @@ import {BudgetOverviewPerCategory} from "../../entity/BudgetOverviewPerCategory"
 })
 export class BudgetTransactionsModalComponent implements OnInit {
 
-  @Input() public overview: BudgetOverviewPerCategory;
+  @Input() public overview: BudgetOverviewPerMonth;
   constructor(public ngbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
