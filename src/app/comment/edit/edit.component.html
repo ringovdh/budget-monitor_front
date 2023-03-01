@@ -35,6 +35,7 @@
       <label for="category" class="form-label">Categorie</label>
       <select
         formControlName="category"
+        [compareWith]="compare"
         id="category"
         class="form-select">
         <option value="0">-</option>
@@ -43,9 +44,6 @@
       </select>
       <div *ngIf="f['category'].touched && f['category'].invalid" class="alert alert-danger">
         <div *ngIf="f['category'].errors && f['category'].errors['required']">Categorie is verplicht.</div>
-      </div>
-      <div class="d-flex mt-5">
-        {{ comment.category.label }}
       </div>
     </div>
   </div>

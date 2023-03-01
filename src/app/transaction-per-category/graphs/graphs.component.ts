@@ -45,7 +45,7 @@ export class GraphsComponent implements OnChanges {
           labels: periods,
           datasets: [
             {
-              label: 'Totaal besteed bedrag per jaar',
+              label: 'Totaal besteed bedrag per maand',
               data: amounts,
               borderColor: '#738FD4',
               tension: 0.2

@@ -67,6 +67,7 @@
       <label for="category" class="form-label">Categorie</label>
       <select
         formControlName="category"
+        [compareWith]="compare"
         id="category"
         class="form-select">
         <option value="0">-</option>

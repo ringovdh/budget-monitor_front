@@ -33,6 +33,10 @@ export class EditComponent implements OnInit {
     });
   }
 
+  compare(cat1: Category, cat2: Category) {
+    return cat1.id === cat2.id;
+  }
+  
   get f(){
     return this.form.controls;
   }

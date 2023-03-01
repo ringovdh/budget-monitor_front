@@ -35,6 +35,11 @@ export class EditComponent implements OnInit {
     });
   }
 
+  compare(cat1: Category, cat2: Category) {
+    console.log('cat ', cat1)
+    return cat1.id === cat2.id;
+  }
+
   get f(){
     return this.editTransactionForm.controls;
   }
