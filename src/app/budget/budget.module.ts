@@ -7,10 +7,15 @@ import { OverviewComponent } from './overview/overview.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BudgetComponent } from './budget/budget.component';
 import { GraphsComponent } from './graphs/graphs.component';
-
+import { SelectYearComponent } from '../forms/select-year/select-year.component'
+import { SelectYearComponentModule } from '../forms/selectYearComponent.module'
 
 @NgModule({
-  declarations: [IndexComponent, OverviewComponent, BudgetComponent, GraphsComponent],
+  declarations: [
+    IndexComponent,
+    OverviewComponent,
+    BudgetComponent,
+    GraphsComponent],
     exports: [
         IndexComponent,
         OverviewComponent
@@ -19,7 +24,8 @@ import { GraphsComponent } from './graphs/graphs.component';
     CommonModule,
     BudgetRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SelectYearComponentModule
   ]
 })
 export class BudgetModule { }

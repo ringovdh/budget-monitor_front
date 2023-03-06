@@ -13,18 +13,20 @@ import { CategoryModule } from './category/category.module';
 import { ImportModule } from './import/import.module';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TransactionModule } from './transaction/transaction.module';
-import { ReactiveFormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 import { ImportModalComponent } from './modal/import-modal/import-modal.component';
 import { BudgetModule } from "./budget/budget.module";
 import { BudgetTransactionsModalComponent } from './modal/budget-transactions-modal/budget-transactions-modal.component';
 import { TransactionsPerCategoryModule } from './transaction-per-category/transactionsPerCategory.module';
+import { TransactionsPerYearModule } from './transaction-per-year/transactionsPerYear.module';
+import { SelectYearComponentModule } from './forms/selectYearComponent.module';
 @NgModule({
   declarations: [
     AppComponent,
     ConfirmationModalComponent,
     ImportModalComponent,
-    BudgetTransactionsModalComponent,
+    BudgetTransactionsModalComponent
   ],
     imports: [
       BrowserModule,
@@ -35,6 +37,8 @@ import { TransactionsPerCategoryModule } from './transaction-per-category/transa
       TransactionModule,
       BudgetModule,
       TransactionsPerCategoryModule,
+      TransactionsPerYearModule,
+      SelectYearComponentModule,
       HttpClientModule,
       RouterLinkWithHref,
       NgxPaginationModule,

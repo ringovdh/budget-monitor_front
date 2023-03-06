@@ -7,25 +7,20 @@
         </div>
       </div>
       <div class="col-6">
-        <form #searchForm="ngForm" (ngSubmit)="submit(searchForm.value.category, searchForm.value.year)" class="d-flex" role="search">
-          <select
-            class="form-select"
-            name="category"
-            ngModel
-            aria-label="search/">
-            <option value="" disabled selected>kies een categorie</option>
-            <option *ngFor="let cat of categories"
-                    [ngValue]="cat.id">{{ cat.label }}</option>
-          </select>
-          <select
-            class="form-select"
-            name="year"
-            ngModel
-            aria-label="search/">
-            <option value="" selected>Alle jaren</option>
-            <option *ngFor="let year of years"
-                    [ngValue]="year.value">{{ year.year }}</option>
-          </select>
+        <form [formGroup]="searchForm" (ngSubmit)="submit()" style="display: flex">
+          <div class="form-group col-5">
+            <select
+              class="form-select"
+              formControlName="category"
+              id="category">
+              <option value="" disabled selected>kies een categorie</option>
+              <option *ngFor="let cat of categories"
+                      [ngValue]="cat.id">{{ cat.label }}</option>
+            </select>
+          </div>
+          <div class="col-5">
+            <app-select-year formControlName="year"> </app-select-year>
+          </div>
           <button class="btn" type="submit">Zoeken</button>
         </form>
       </div>

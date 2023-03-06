@@ -7,25 +7,20 @@
         </div>
       </div>
       <div class="col-6">
-        <form #getBudgetOverviewForm="ngForm" (ngSubmit)="submit(getBudgetOverviewForm.value)" class="d-flex" role="search">
-          <select
-            class="form-select"
-            name="month"
-            ngModel
-            aria-label="search/">
-            <option value="" disabled selected>kies een maand</option>
-            <option *ngFor="let month of months"
-                    [ngValue]="month.value">{{ month.name }}</option>
-          </select>
-          <select
-            class="form-select"
-            name="year"
-            ngModel
-            aria-label="search/">
-            <option value="" disabled selected>kies een jaartal</option>
-            <option *ngFor="let year of years"
-                    [ngValue]="year">{{ year }}</option>
-          </select>
+        <form [formGroup]="searchForm" (ngSubmit)="submit()" style="display: flex">
+          <div class="form-group col-5">
+            <select
+              class="form-select"
+              formControlName="month"
+              id="month">
+              <option value="" disabled selected>kies een maand</option>
+              <option *ngFor="let month of months"
+                      [ngValue]="month.value">{{ month.name }}</option>
+            </select>
+          </div>
+          <div class="col-5">
+            <app-select-year formControlName="year"> </app-select-year>
+          </div>
           <button class="btn" type="submit">Zoeken</button>
         </form>
       </div>
