@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js';
 import { BudgetOverviewPerCategory } from 'src/app/entity/BudgetOverviewPerCategory';
+import { getPeriodLabel } from 'src/app/common/utils/dateUtils'
 
 @Component({
   selector: 'app-graphs',
@@ -14,7 +15,7 @@ export class GraphsComponent implements OnChanges {
   txPerYearBarChart: any;
   amountPerYearBarChart: any;
   @Input() budgetOverview: BudgetOverviewPerCategory[] = [];
-  budgetOverwiewByMonth: {label: string, total: number}[] = [];
+  budgetOverwiewByMonth: { label: string, total: number }[] = [];
 
   constructor() { }
 
@@ -123,7 +124,7 @@ export class GraphsComponent implements OnChanges {
     this.budgetOverview.forEach (
       o => o.transactions.forEach (
         tx => {
-          let _period = this.getPeriodLabel(tx.date);
+          let _period = getPeriodLabel(tx.date);
           if (groups.has(_period)) {
             if (tx.sign === '+') {
               let _total = groups.get(_period) + tx.amount;
@@ -144,10 +145,5 @@ export class GraphsComponent implements OnChanges {
     )
     return new Map([...groups.entries()].sort());
   }
-
-  private getPeriodLabel(date: Date) {
-    let month = String(new Date(date).getMonth() + 1);
-    let year = new Date(date).getFullYear();
-    return year + '-' + month.padStart(2, '0');
-  }
+  
 }

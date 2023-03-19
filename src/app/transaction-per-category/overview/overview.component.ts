@@ -10,6 +10,7 @@ import { BudgetOverviewPerCategory } from 'src/app/entity/BudgetOverviewPerCateg
 export class OverviewComponent implements OnChanges {
 
   @Input() budgetOverview: BudgetOverviewPerCategory[] = [];
+  
   constructor() {
   }
 

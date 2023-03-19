@@ -21,6 +21,7 @@ import { BudgetTransactionsModalComponent } from './modal/budget-transactions-mo
 import { TransactionsPerCategoryModule } from './transaction-per-category/transactionsPerCategory.module';
 import { TransactionsPerYearModule } from './transaction-per-year/transactionsPerYear.module';
 import { SelectYearComponentModule } from './forms/selectYearComponent.module';
+
 @NgModule({
   declarations: [
     AppComponent,

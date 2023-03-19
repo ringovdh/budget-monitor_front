@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {BudgetOverviewPerMonth} from "../entity/BudgetOverviewPerMonth";
+import { BudgetOverviewPerYear } from '../entity/BudgetOverviewPerYear';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,9 @@ export class BudgetService {
 
   getBudgetOverviewByPeriod(month: number, year: number): Observable<BudgetOverviewPerMonth[]> {
     return this.httpClient.get<BudgetOverviewPerMonth[]>(`${this.apiURL}/period?month=${month}&year=${year}`);
+  }
+
+  getBudgetOverviewByYear(year: number): Observable<BudgetOverviewPerYear[]> {
+    return this.httpClient.get<BudgetOverviewPerYear[]>(`${this.apiURL}/year?year=${year}`);
   }
 }

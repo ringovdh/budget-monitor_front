@@ -37,9 +37,12 @@ export class OverviewComponent implements OnChanges {
     this.totalOutgoing = this.outgoingBudget.map(o => o.total).reduce((a, c) => { return a + c }, 0);
     this.totalSavings = -this.savings.map(o => o.total).reduce((a, c) => { return a + c }, 0);
 
+    console.log('total:', this.totalIncome
+      + ' + ' + this.totalFixedCost
+      + ' + ' + this.totalOutgoing)
     this.totalAmount = this.totalIncome
-      - Math.abs(this.totalFixedCost)
-      - Math.abs(this.totalOutgoing);
+      + this.totalFixedCost
+      + this.totalOutgoing;
   }
 
   resetTotals() {

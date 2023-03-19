@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { TransactionRoutingModule } from './transaction-routing.module';
 import { IndexComponent } from "./index/index.component";
 import { CreateComponent } from "./create/create.component";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NgxPaginationModule} from "ngx-pagination";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgxPaginationModule } from "ngx-pagination";
 import { EditComponent } from './edit/edit.component';
 
 

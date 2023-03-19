@@ -27,31 +27,23 @@ export class TransactionService {
     this.httpClient.get<CustomHttpResponse<Page<Transaction>>>(`${this.apiURL}/category?categoryId=${category}&year=${year}&page=${page}&size=${size}`);
 
   getBudgetOverviewByPeriod(date: Date): Observable<BudgetOverviewPerCategory[]> {
-    console.log('date: ', date);
     return this.httpClient.get<BudgetOverviewPerCategory[]>(`${this.apiURL}/period?period=${date}`);
   }
 
   getBudgetOverviewByCategory(category: number, year: string): Observable<BudgetOverviewPerCategory[]> {
-    console.log('category: ', category);
     return this.httpClient.get<BudgetOverviewPerCategory[]>(`${this.apiURL}/category?categoryId=${category}&year=${year}`);
   }
 
-
   create(transaction: Transaction): Observable<Transaction> {
-    this.printMe(transaction);
     return this.httpClient.post<Transaction>(this.apiURL, JSON.stringify(transaction), this.httpOptions)
   }
 
   update(id: number, transaction: Transaction): Observable<Transaction> {
-    this.printMe(transaction);
     return this.httpClient.put<Transaction>(this.apiURL + "/" + id, JSON.stringify(transaction), this.httpOptions)
   }
 
   delete(id: number) {
     return this.httpClient.delete<Transaction>(this.apiURL + "/" + id, this.httpOptions)
   }
-
-  printMe(object: any) {
-    console.log('Ringo print: ', object)
-  }
+  
 }
