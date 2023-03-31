@@ -21,6 +21,7 @@ import { BudgetTransactionsModalComponent } from './modal/budget-transactions-mo
 import { TransactionsPerCategoryModule } from './transaction-per-category/transactionsPerCategory.module';
 import { TransactionsPerYearModule } from './transaction-per-year/transactionsPerYear.module';
 import { SelectYearComponentModule } from './forms/selectYearComponent.module';
+import { ProjectModule } from './project/project.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SelectYearComponentModule } from './forms/selectYearComponent.module';
       RouterOutlet,
       CommentModule,
       CategoryModule,
+      ProjectModule,
       ImportModule,
       TransactionModule,
       BudgetModule,
