@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 import { RouterLinkWithHref, RouterOutlet } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { NgxPaginationModule } from 'ngx-pagination';
-import { CommentModule } from './comment/comment.module';
-import { CategoryModule } from './category/category.module';
+import { CommentModule } from './admin/comment/comment.module';
+import { CategoryModule } from './admin/category/category.module';
 import { ImportModule } from './import/import.module';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TransactionModule } from './transaction/transaction.module';
@@ -21,7 +21,8 @@ import { BudgetTransactionsModalComponent } from './modal/budget-transactions-mo
 import { TransactionsPerCategoryModule } from './transaction-per-category/transactionsPerCategory.module';
 import { TransactionsPerYearModule } from './transaction-per-year/transactionsPerYear.module';
 import { SelectYearComponentModule } from './forms/selectYearComponent.module';
-import { ProjectModule } from './project/project.module';
+import { ProjectModule } from './admin/project/project.module';
+import { ProjectsModule } from './projects/projects.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ProjectModule } from './project/project.module';
       CommentModule,
       CategoryModule,
       ProjectModule,
+      ProjectsModule,
       ImportModule,
       TransactionModule,
       BudgetModule,

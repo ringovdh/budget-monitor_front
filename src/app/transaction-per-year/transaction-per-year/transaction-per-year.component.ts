@@ -28,7 +28,6 @@ export class TransactionPerYearComponent implements OnInit {
     this.title = "Overzicht transacties jaar " + this.year
     this.budgetService.getBudgetOverviewByYear(this.year).subscribe(data => {
       this.budgetOverview = data;
-      console.log(data)
     });
 
   }

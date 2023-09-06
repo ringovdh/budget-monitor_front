@@ -79,8 +79,7 @@ export class GraphsComponent implements OnChanges {
               label: 'Totaal besteed bedrag per jaar',
               data: amounts,
               backgroundColor: '#738FD4',
-            }
-          ]
+            }]
         },
         options: {
           responsive: true
@@ -116,7 +115,6 @@ export class GraphsComponent implements OnChanges {
           responsive: true
         }
       });
-
   }
 
   private groupBudgetOverviewByMonth() {

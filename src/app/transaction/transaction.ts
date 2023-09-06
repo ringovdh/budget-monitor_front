@@ -1,4 +1,5 @@
-import {Category} from "../category/category";
+import {Category} from "../admin/category/category";
+import { Project } from "../projects/project";
 
 export interface Transaction {
   tx_id: number;
@@ -9,4 +10,5 @@ export interface Transaction {
   comment: string;
   originalComment: string;
   category: Category;
+  project: Project;
 }

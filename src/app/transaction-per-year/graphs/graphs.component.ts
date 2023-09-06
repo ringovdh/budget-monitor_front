@@ -46,10 +46,25 @@ export class GraphsComponent implements OnChanges {
             data: amounts,
             borderColor: '#738FD4',
             tension: 0.2
-          }]
+          }
+        ]
       },
       options: {
-        responsive: true
+        responsive: true,
+        scales: {
+          y: {
+            display: true,
+            grid: {
+              color:  (ctx) => {
+                if (ctx.tick.value == 0) {
+                  return '#9ae9db';
+                } else {
+                  return ''
+                }
+              }
+            }
+          }
+        }
       }
     });
   }

@@ -78,7 +78,6 @@ export class ImportComponent implements OnInit {
         break;
 
       case HttpEventType.Response:
-        console.log('response', httpEvent.body.data);
         break;
     }
   }
@@ -95,13 +94,11 @@ export class ImportComponent implements OnInit {
   }
 
   loadBudgetOverview(transaction: Transaction) {
-    console.log('tx: ', transaction);
     let date = new Date(transaction.date);
-    this.budgetService.getBudgetOverviewByPeriod(date.getMonth()+1, date.getFullYear()).subscribe(data => {
-      this.budgetOverview = data;
-      console.log('load: ', this.budgetOverview);
-    });
-
+    this.budgetService.getBudgetOverviewByPeriod(date.getMonth()+1, date.getFullYear())
+      .subscribe(data => {
+        this.budgetOverview = data;
+      });
   }
 
   openFormModal(tx: Transaction) {

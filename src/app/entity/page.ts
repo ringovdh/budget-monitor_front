@@ -1,4 +1,4 @@
-import { Comment } from "../comment/comment"
+import { Comment } from "../admin/comment/comment"
 
 export interface Page<T> {
   "content": T[],

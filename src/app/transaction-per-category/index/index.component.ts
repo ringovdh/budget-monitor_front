@@ -18,8 +18,9 @@ export class IndexComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) { }
 
   openTransactionsModal(overview: BudgetOverviewPerCategory) {
+    console.log('ov', overview)
     const modalRef = this.modalService.open(BudgetTransactionsModalComponent);
     modalRef.componentInstance.overview = overview;
   }
-  
+
 }

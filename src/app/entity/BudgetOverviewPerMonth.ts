@@ -1,4 +1,4 @@
-import {Category} from "../category/category";
+import {Category} from "../admin/category/category";
 import {Transaction} from "../transaction/transaction";
 
 export interface BudgetOverviewPerMonth {

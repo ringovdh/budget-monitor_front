@@ -6,16 +6,20 @@ import { IndexComponent } from "./index/index.component";
 import { OverviewComponent } from './overview/overview.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BudgetComponent } from './budget/budget.component';
-import { GraphsComponent } from './graphs/graphs.component';
 import { SelectYearComponent } from '../forms/select-year/select-year.component'
-import { SelectYearComponentModule } from '../forms/selectYearComponent.module'
+import { SelectYearComponentModule } from '../forms/selectYearComponent.module';
+import { OverviewGraphComponent } from './graphics/overview-graph/overview-graph.component';
+import { FixedCostGraphComponent } from './graphics/fixed-cost-graph/fixed-cost-graph.component';
+import { OtherCostGraphComponent } from './graphics/other-cost-graph/other-cost-graph.component'
 
 @NgModule({
   declarations: [
     IndexComponent,
     OverviewComponent,
     BudgetComponent,
-    GraphsComponent],
+    OverviewGraphComponent,
+    FixedCostGraphComponent,
+    OtherCostGraphComponent],
     exports: [
         IndexComponent,
         OverviewComponent

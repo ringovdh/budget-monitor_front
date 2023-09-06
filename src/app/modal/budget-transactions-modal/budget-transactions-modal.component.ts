@@ -1,6 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import { EditComponent } from 'src/app/transaction/edit/edit.component';
+import { Transaction } from 'src/app/transaction/transaction';
+import { TransactionService } from 'src/app/transaction/transaction.service';
 import {BudgetOverviewPerMonth} from "../../entity/BudgetOverviewPerMonth";
+import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-budget-transactions-modal',
@@ -11,9 +15,35 @@ import {BudgetOverviewPerMonth} from "../../entity/BudgetOverviewPerMonth";
 export class BudgetTransactionsModalComponent implements OnInit {
 
   @Input() public overview: BudgetOverviewPerMonth;
-  constructor(public ngbActiveModal: NgbActiveModal) { }
+
+  constructor(public ngbActiveModal: NgbActiveModal,
+              public transactionService: TransactionService,
+              private modalService: NgbModal) { }
 
   ngOnInit(): void {
+  }
+
+  editTransaction(tx: Transaction){
+    const modalRef = this.modalService.open(EditComponent);
+    modalRef.componentInstance.transaction = tx;
+
+      modalRef.componentInstance.returnTransaction.subscribe((receivedTransaction: Transaction) => {
+        let index = this.overview.transactions.indexOf(tx);
+        this.overview.transactions[index] = receivedTransaction;
+      });
+   
+  }
+
+  deleteTransaction(id: number) {
+    const modalRef = this.modalService.open(ConfirmationModalComponent);
+    modalRef.result.then((result) => {
+      if (result === 'confirmed') {
+        this.transactionService.delete(id).subscribe(() => {
+          this.overview.transactions = this.overview.transactions.filter(item => item.tx_id !== id);
+          console.log('Transaction deleted successfully!');
+        })
+      }
+    });
   }
 
   close() {

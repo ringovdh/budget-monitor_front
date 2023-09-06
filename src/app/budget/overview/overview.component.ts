@@ -1,4 +1,5 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import { Chart } from 'chart.js';
 import {BudgetOverviewPerMonth} from "../../entity/BudgetOverviewPerMonth";
 
 @Component({
@@ -9,6 +10,8 @@ import {BudgetOverviewPerMonth} from "../../entity/BudgetOverviewPerMonth";
 })
 export class OverviewComponent implements OnChanges {
 
+  overviewBudgetBarChart: any;
+  chart: any;
   @Input() budgetOverview: BudgetOverviewPerMonth[] = [];
   incomingBudget: BudgetOverviewPerMonth[] = [];
   outgoingBudget: BudgetOverviewPerMonth[] = [];
@@ -19,6 +22,7 @@ export class OverviewComponent implements OnChanges {
   totalOutgoing: number = 0;
   totalSavings: number = 0;
   totalAmount: number = 0;
+
 
   constructor() { }
 
@@ -36,7 +40,7 @@ export class OverviewComponent implements OnChanges {
     this.totalFixedCost = this.fixedOutgoingBudget.map(o => o.total).reduce((a, c) => { return a + c }, 0);
     this.totalOutgoing = this.outgoingBudget.map(o => o.total).reduce((a, c) => { return a + c }, 0);
     this.totalSavings = -this.savings.map(o => o.total).reduce((a, c) => { return a + c }, 0);
-    
+
     this.totalAmount = this.totalIncome
       + this.totalFixedCost
       + this.totalOutgoing;

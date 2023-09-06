@@ -8,8 +8,8 @@ import {TransactionService} from "../transaction.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {EditComponent} from "../edit/edit.component";
 import {ConfirmationModalComponent} from "../../modal/confirmation-modal/confirmation-modal.component";
-import { Category } from 'src/app/category/category';
-import { CategoryService } from 'src/app/category/category.service';
+import { Category } from 'src/app/admin/category/category';
+import { CategoryService } from 'src/app/admin/category/category.service';
 
 @Component({
   selector: 'app-index',
