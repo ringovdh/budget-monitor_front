@@ -3,6 +3,7 @@ import { Chart } from 'chart.js/auto';
 import { Category } from 'src/app/admin/category/category';
 import { BudgetOverviewPerMonth } from 'src/app/entity/BudgetOverviewPerMonth';
 import { BudgetPerMonth } from 'src/app/entity/BudgetPerMonth';
+import { MonthlyBudgetOverview } from 'src/app/entity/MonthlyBudgetOverview';
 import { Transaction } from 'src/app/transaction/transaction';
 
 @Component({
@@ -15,12 +16,11 @@ import { Transaction } from 'src/app/transaction/transaction';
 export class OverviewGraphComponent implements OnChanges {
 
   overviewBudgetCharts: any;
-  @Input() budgetOverviewPerMonth: BudgetOverviewPerMonth[];
+  @Input() monthlyBudgetOverview: MonthlyBudgetOverview;
   totalIncomming: number = 0;
   totalFixedCost: number = 0;
   totalOutgoing: number = 0;
   totalSavings: number = 0;
-  graphLabels: string[] = [];
 
   constructor() { }
 
@@ -30,65 +30,58 @@ export class OverviewGraphComponent implements OnChanges {
 
   createOverviewBudgetGraphs() {
     this.resetAmounts();
-    this.graphLabels = [];
     if (this.overviewBudgetCharts != null) {
       this.overviewBudgetCharts.destroy();
     }
     var ctx = document.getElementById('chartsOverviewBudget');
     this.overviewBudgetCharts = new Chart('chartsOverviewBudget', {
+      type: 'bar',
       data: {
-        labels: this.graphLabels,
         datasets: [
           {
-            type: 'line',
-            label: 'Inkomsten deze maand',
-            data: this.calculateIncommingAmounts(),
-            borderColor: '#738FD4',
-            tension: 0.2
+            label: 'Vaste kosten',
+            data: this.monthlyBudgetOverview.monthGraphData.fixedCostAmounts,
+            backgroundColor: '#b4d9ec',
+            stack: 'combined'
+          },
+          {
+            label: 'Algemene kosten',
+            data: this.monthlyBudgetOverview.monthGraphData.otherCostAmounts,
+            backgroundColor: '#0d97dc',
+            stack: 'combined'
           },
           {
             type: 'line',
-            label: 'Sparen deze maand',
-            data: this.calculateSavingAmounts(),
+            label: 'Inkomsten',
+            data: this.monthlyBudgetOverview.monthGraphData.incomingAmounts,
             borderColor: '#d473aa',
-            tension: 0.2
+            tension: 0.2,
+            order: 1
           }
         ]
       },
       options: {
-        responsive: true
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          }
+        },
+        scales: {
+          y: {
+            stacked: true
+          }
+        }
       }
     });
   }
 
   calculateIncommingAmounts = () => {
-    let incommingAmounts: number[] = [];
-    let myDataset = this.calculateIncomingBudgetThisMonth();
-    myDataset.forEach((value: number, key: Date) => {
-      this.graphLabels.push(key + '');
-      incommingAmounts.push(value)
-    });
-    return incommingAmounts;
+    const groups = this.monthlyBudgetOverview.monthGraphData.incomingAmounts
+    return groups;
   }
 
-  private calculateIncomingBudgetThisMonth = () => {
-    let groups: Map<Date, number> = new Map<Date, number>();
-    this.budgetOverviewPerMonth
-      .filter(overviewPerMonth => {
-        return overviewPerMonth.category.revenue}
-      )
-      .flatMap(value => {
-        return value.transactions}
-      )
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-      .forEach(t => {
-          let _period = t.date;
-          groups.set(_period, this.calculateTotalAmount(t));
-        });
-    return groups
-  }
-
-  calculateSavingAmounts = () => {
+  /**calculateSavingAmounts = () => {
     let savingAmounts: number[] = [];
     let myDataset = this.calculateSavingBudgetThisMonth();
     myDataset.forEach((value: number, key: Date) => {
@@ -113,7 +106,7 @@ export class OverviewGraphComponent implements OnChanges {
         groups.set(_period, this.calculateTotalSavingAmount(t));
       });
     return groups
-  }
+  }**/
 
   private calculateTotalSavingAmount = (t: Transaction) => {
     let result = this.totalSavings + t.amount;

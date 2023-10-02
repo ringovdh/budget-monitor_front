@@ -12,6 +12,7 @@ import {HttpErrorResponse, HttpEvent, HttpEventType} from "@angular/common/http"
 import {ImportModalComponent} from "../../modal/import-modal/import-modal.component";
 import {TransactionService} from "../../transaction/transaction.service";
 import {BudgetService} from "../../budget/budget.service";
+import { MonthlyBudgetOverview } from 'src/app/entity/MonthlyBudgetOverview';
 
 @Component({
   selector: 'app-import',
@@ -28,16 +29,16 @@ export class ImportComponent implements OnInit {
   selectedFile: null;
   transactions: Transaction[] = [];
   transaction: Transaction;
-  numberOfTransactions = 0;
-  submitted = false;
-  infoTxSaldo = 0;
-  p:number = 1;
+  numberOfTransactions: number = 0;
+  submitted: boolean = false;
+  infoTxSaldo: number = 0;
+  p: number = 1;
   fileStatus = {status: '', requestType: '', percent: 0}
   budgetOverview: BudgetOverviewPerMonth[] = [];
+  monthlyBudgetOverview: MonthlyBudgetOverview;
   newTransactions: Transaction[] = [];
   importState$: Observable<{appState: string, appData?:any, error?:HttpErrorResponse}>;
   responseSubject = new BehaviorSubject<CustomHttpResponse<ImportResponse>>(null);
-
 
   constructor(public importService: ImportService,
               public transactionService: TransactionService,
@@ -61,27 +62,6 @@ export class ImportComponent implements OnInit {
     }
   }
 
-  /*uploadPDFFile(): void {
-      const formData = new FormData();
-      formData.append('file', this.selectedFile)
-      this.importService.uploadTransactions(formData).
-      subscribe((data) => {
-        console.log('data', data.body);
-        this.transactions = data.body
-      });
-  }*/
-
-  private reportProgress(httpEvent: HttpEvent<CustomHttpResponse<ImportResponse>>): void {
-    switch (httpEvent.type) {
-      case HttpEventType.UploadProgress:
-        this.updateStatus(httpEvent.loaded, httpEvent.total!, 'Uploading');
-        break;
-
-      case HttpEventType.Response:
-        break;
-    }
-  }
-
   createTransaction(){
     const modalRef = this.modalService.open(CreateComponent);
 
@@ -97,7 +77,7 @@ export class ImportComponent implements OnInit {
     let date = new Date(transaction.date);
     this.budgetService.getBudgetOverviewByPeriod(date.getMonth()+1, date.getFullYear())
       .subscribe(data => {
-        this.budgetOverview = data;
+        this.monthlyBudgetOverview = data;
       });
   }
 
@@ -125,12 +105,6 @@ export class ImportComponent implements OnInit {
     }
   }
 
-  private updateStatus(loaded: number, total: number, uploading: string) {
-    this.fileStatus.status = 'progress';
-    this.fileStatus.requestType = uploading;
-    this.fileStatus.percent = Math.round(100 * loaded/total);
-  }
-
   uploadPDF() {
     const modalRef = this.modalService.open(ImportModalComponent);
     modalRef.result.then((result) => {
@@ -140,4 +114,5 @@ export class ImportComponent implements OnInit {
       }
     });
   }
+  
 }

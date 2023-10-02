@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import { Chart } from 'chart.js';
+import { MonthlyBudgetOverview } from 'src/app/entity/MonthlyBudgetOverview';
 import {BudgetOverviewPerMonth} from "../../entity/BudgetOverviewPerMonth";
 
 @Component({
@@ -12,7 +13,8 @@ export class OverviewComponent implements OnChanges {
 
   overviewBudgetBarChart: any;
   chart: any;
-  @Input() budgetOverview: BudgetOverviewPerMonth[] = [];
+  @Input() monthlyBudgetOverview: MonthlyBudgetOverview;
+  budgetOverview: BudgetOverviewPerMonth[] = [];
   incomingBudget: BudgetOverviewPerMonth[] = [];
   outgoingBudget: BudgetOverviewPerMonth[] = [];
   fixedOutgoingBudget: BudgetOverviewPerMonth[] = [];
@@ -27,10 +29,11 @@ export class OverviewComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.fixedOutgoingBudget = this.budgetOverview.filter(o => o.category.fixedcost);
-    this.incomingBudget = this.budgetOverview.filter(o => o.category.revenue);
-    this.savings = this.budgetOverview.filter(o => o.category.saving);
-    this.outgoingBudget = this.budgetOverview.filter(o => (!o.category.fixedcost && !o.category.revenue && !o.category.saving));
+    this.budgetOverview = this.monthlyBudgetOverview.transactionsPerCategoryList;
+    this.fixedOutgoingBudget = this.monthlyBudgetOverview.transactionsPerCategoryList.filter(o => o.category.fixedcost);
+    this.incomingBudget = this.monthlyBudgetOverview.transactionsPerCategoryList.filter(o => o.category.revenue);
+    this.savings = this.monthlyBudgetOverview.transactionsPerCategoryList.filter(o => o.category.saving);
+    this.outgoingBudget = this.monthlyBudgetOverview.transactionsPerCategoryList.filter(o => (!o.category.fixedcost && !o.category.revenue && !o.category.saving));
     this.countTotals();
   }
 

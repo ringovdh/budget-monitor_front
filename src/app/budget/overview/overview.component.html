@@ -15,9 +15,9 @@
       </div>
       <div class="panel-body">
         <div class="row">
-          <div class="col-9">
+          <div class="col-6">
             <div class="row">
-              <div class="col-4">
+              <div class="col-6">
                 <div class="card total-budget-card">
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -32,7 +32,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-4">
+              <div class="col-6">
                 <div class="card total-budget-card">
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -47,7 +47,9 @@
                   </div>
                 </div>
               </div>
-              <div class="col-4">
+            </div>
+            <div class="row">
+              <div class="col-6">
                 <div class="card total-budget-card">
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -63,42 +65,44 @@
                 </div>
               </div>
               <div class="col-6">
-                <div class="card end-total-budget-card">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div class="budgetOverview-label">Eind bedrag:</div>
-                        <div class="budgetOverview-amount">{{ totalAmount | number:'1.2-2':'be-BE'}} €</div>
-                      </div>
-                      <div class="col-auto total-budget-icon">
-                        <i *ngIf= "totalAmount > 0" class="fa fa-circle-up"></i>
-                        <i *ngIf= "totalAmount < 0" class="fa fa-circle-down"></i>
+                  <div class="card total-savings-budget-card">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="budgetOverview-label">Sparen:</div>
+                          <div class="budgetOverview-amount">{{ totalSavings | number:'1.2-2':'be-BE'}} €</div>
+                        </div>
+                        <div class="col-auto total-budget-icon">
+                          <i class="fa-solid fa-arrow-trend-up"></i>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-6">
-                <app-overview-graph
-                  [budgetOverviewPerMonth]="budgetOverview">
-                </app-overview-graph>
-              </div>
             </div>
-          </div>
-          <div class="col-3">
-            <div class="card total-savings-budget-card">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="budgetOverview-label">Sparen:</div>
-                    <div class="budgetOverview-amount">{{ totalSavings | number:'1.2-2':'be-BE'}} €</div>
-                  </div>
-                  <div class="col-auto total-budget-icon">
-                    <i class="fa-solid fa-arrow-trend-up"></i>
+            <div class="row">
+              <div class="col-6">
+                <div class="card end-total-budget-card">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="budgetOverview-label">Eind bedrag:</div>
+                      <div class="budgetOverview-amount">{{ totalAmount | number:'1.2-2':'be-BE'}} €</div>
+                    </div>
+                    <div class="col-auto total-budget-icon">
+                      <i *ngIf= "totalAmount > 0" class="fa fa-circle-up"></i>
+                      <i *ngIf= "totalAmount < 0" class="fa fa-circle-down"></i>
+                    </div>
                   </div>
                 </div>
               </div>
+              </div>
             </div>
+          </div>
+          <div class="col-6">
+            <app-overview-graph
+              [monthlyBudgetOverview]="monthlyBudgetOverview">
+            </app-overview-graph>
           </div>
         </div>
       </div>
