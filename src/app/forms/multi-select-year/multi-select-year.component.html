@@ -1,0 +1,9 @@
+<div class="form-group" role="group" [formGroup]="searchYearForm">
+  <ng-multiselect-dropdown
+    [data]="dropdownList"
+    [settings]="dropdownSettings"
+    [(ngModel)]="selectedItems"
+    (onSelect)="onItemSelect($event)"
+    (onSelectAll)="onSelectAll($event)">
+  </ng-multiselect-dropdown>
+</div>

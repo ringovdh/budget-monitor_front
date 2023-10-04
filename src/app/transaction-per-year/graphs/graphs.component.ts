@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js';
-import { getPeriodLabel } from 'src/app/common/utils/dateUtils';
 import { BudgetPerMonth } from 'src/app/entity/BudgetPerMonth';
+import {Form, FormControl, FormGroup, Validators} from "@angular/forms";
+import {BudgetService} from "../../budget/budget.service";
 
 @Component({
   selector: 'app-graphs',
@@ -13,14 +14,22 @@ export class GraphsComponent implements OnChanges {
 
   @Input() budgetResultsPerMonth: BudgetPerMonth[];
   restBudgetPerMonthlineChart: any;
-  totalRestBudget: number = 0
+  totalRestBudget: number = 0;
+  addDataForm!: FormGroup;
 
-  constructor() { }
+  constructor(public budgetService: BudgetService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.createAddDataForm();
     if (this.budgetResultsPerMonth != null) {
       this.createRestBudgetPerYearGraph();
     }
+  }
+
+  submit() {
+    this.budgetService.getBudgetOverviewByYear(this.addDataForm.get("year").value).subscribe((data) => {
+      console.log('ddd', data);
+    });
   }
 
   private createRestBudgetPerYearGraph() {
@@ -75,7 +84,6 @@ export class GraphsComponent implements OnChanges {
     this.budgetResultsPerMonth.forEach (
         r => {
           let _period = r.month;
-          let result
           groups.set(_period, this.calculateTotalRestBudget(r));
         });
 
@@ -90,4 +98,11 @@ export class GraphsComponent implements OnChanges {
 
     return result;
   }
+
+  private createAddDataForm() {
+    this.addDataForm = new FormGroup({
+      year: new FormControl('')
+    })
+  }
+
 }
