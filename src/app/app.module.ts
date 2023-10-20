@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData} from '@angular/common';
 import localeBE from '@angular/common/locales/be';
 
 import { AppComponent } from './app.component';
-import { RouterLinkWithHref, RouterOutlet } from "@angular/router";
+import { RouterLink, RouterOutlet } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CommentModule } from './admin/comment/comment.module';
@@ -13,7 +13,7 @@ import { CategoryModule } from './admin/category/category.module';
 import { ImportModule } from './import/import.module';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TransactionModule } from './transaction/transaction.module';
-import {FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 import { ImportModalComponent } from './modal/import-modal/import-modal.component';
 import { BudgetModule } from "./budget/budget.module";
@@ -23,6 +23,7 @@ import { TransactionsPerYearModule } from './transaction-per-year/transactionsPe
 import { SelectYearComponentModule } from './forms/selectYearComponent.module';
 import { ProjectModule } from './admin/project/project.module';
 import { ProjectsModule } from './projects/projects.module';
+import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 
 @NgModule({
   declarations: [
@@ -45,10 +46,11 @@ import { ProjectsModule } from './projects/projects.module';
       TransactionsPerYearModule,
       SelectYearComponentModule,
       HttpClientModule,
-      RouterLinkWithHref,
+      RouterLink,
       NgxPaginationModule,
       NgbModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      MultiSelectModule
     ],
   providers: [NgbActiveModal],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { BudgetPerMonth } from 'src/app/entity/BudgetPerMonth';
 
 @Component({
-  selector: 'app-index',
+  selector: 'app-year-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css',
     '../../../assets/panel_layout.css']

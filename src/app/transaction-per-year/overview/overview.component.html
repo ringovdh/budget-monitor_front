@@ -90,10 +90,12 @@
       </nav>
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-index" role="tabpanel" aria-labelledby="nav-index-tab">
-          <app-index [budgetResultsPerMonth] = budgetResultsPerMonth></app-index>
+          <app-year-index [budgetResultsPerMonth] = budgetResultsPerMonth></app-year-index>
         </div>
         <div class="tab-pane fade" id="nav-graphs" role="tabpanel" aria-labelledby="nav-graphs-tab">
-          <app-graphs [budgetResultsPerMonth] = budgetResultsPerMonth></app-graphs>
+          <app-graphs [budgetResultsPerMonth] = budgetResultsPerMonth
+                      [year] = year >
+          </app-graphs>
         </div>
       </div>
     </div>

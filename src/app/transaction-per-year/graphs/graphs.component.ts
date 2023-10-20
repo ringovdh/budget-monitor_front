@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js';
 import { BudgetPerMonth } from 'src/app/entity/BudgetPerMonth';
-import {Form, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {BudgetService} from "../../budget/budget.service";
 
 @Component({
@@ -13,14 +13,15 @@ import {BudgetService} from "../../budget/budget.service";
 export class GraphsComponent implements OnChanges {
 
   @Input() budgetResultsPerMonth: BudgetPerMonth[];
+  @Input() year: number;
   restBudgetPerMonthlineChart: any;
   totalRestBudget: number = 0;
   addDataForm!: FormGroup;
+  yearSelections: any[];
 
   constructor(public budgetService: BudgetService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.createAddDataForm();
     if (this.budgetResultsPerMonth != null) {
       this.createRestBudgetPerYearGraph();
     }
@@ -97,12 +98,6 @@ export class GraphsComponent implements OnChanges {
     this.totalRestBudget = result;
 
     return result;
-  }
-
-  private createAddDataForm() {
-    this.addDataForm = new FormGroup({
-      year: new FormControl('')
-    })
   }
 
 }

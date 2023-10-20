@@ -29,9 +29,9 @@ export class TransactionPerYearComponent implements OnInit {
     this.budgetService.getBudgetOverviewByYear(this.year).subscribe(data => {
       this.budgetOverview = data;
     });
-
   }
-  private createSearchForm() {
+
+  private createSearchForm = ()=> {
     this.searchForm = new FormGroup({
       year: new FormControl('')
     })

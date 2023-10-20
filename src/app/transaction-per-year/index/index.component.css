@@ -1,6 +1,6 @@
 .budget-card {
-  border-left: 8px solid #7d97a5;
-  border-right: 1px solid #7d97a5;
+  border-left: 4px solid #7d97a5;
+  border-right: 4px solid #7d97a5;
   border-top: 1px solid #7d97a5;
   border-bottom: 1px solid #7d97a5;
   background-color: #f1f4f5;
@@ -15,7 +15,6 @@
   font-size: 16px;
   font-weight: bold;
   color: #f1f4f5;
-  border-radius: 0 5px 0 0;
 }
 
 .budget-card-header-title {
@@ -24,47 +23,4 @@
   font-weight: bold;
   color: #f1f4f5;
   padding: 5px 0 5px 0;
-}
-
-.budget-list-item {
-  color: #303e45;
-  font-size: 14px;
-  font-weight: bold;
-  background-color: transparent;
-  padding: 2px;
-}
-
-.budget-total-list-item {
-  color: #303e45;
-  font-size: 14px;
-  font-weight: bold;
-  background-color: transparent;
-  border-top: 2px solid #303e45;
-  padding: 2px;
-}
-
-.badge-budget {
-  font-size: 12px;
-  background-color: #738FD4;
-  float: right;
-  color: #f1f4f5;
-}
-
-.badge-saving {
-  font-size: 12px;
-  background-color: #738FD4;
-  color: #f1f4f5;
-  display: flex;
-}
-
-.saving-icon {
-  text-align: center;
-  font-size: 20px;
-}
-
-.badge-total-budget {
-  font-size: 12px;
-  background-color: #738FD4;
-  float: right;
-  color: #f1f4f5;
 }

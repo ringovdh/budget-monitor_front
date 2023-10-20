@@ -1,30 +1,11 @@
 <div class="card budget-card" *ngFor="let result of budgetResultsPerMonth">
-  <div class="budget-card-header">
-    <div class="budget-card-header-title">{{ result.month }}</div>
-  </div>
-  <div class="card-body">
-    <div class="row no-gutters align-items-center">
-      <div class="col-8">
-        <div class="budget-list-item">Inkomsten:
-          <span class="badge badge-budget badge-pill">{{ result.totalIncomingBudget | number:'1.2-2':'be-BE' }} €</span>
-        </div>
-        <div class="budget-list-item">Vaste kost:
-          <span class="badge badge-budget badge-pill">{{ result.totalFixedOutgoingBudget | number:'1.2-2':'be-BE' }} €</span>
-        </div>
-        <div class="budget-list-item">Uitgaven:
-          <span class="badge badge-budget badge-pill">{{ result.totalOutgoingBudget | number:'1.2-2':'be-BE' }} €</span>
-        </div>
-        <div class="budget-total-list-item">Rest:
-          <span class="badge badge-total-budget">{{ result.totalIncomingBudget + result.totalFixedOutgoingBudget + result.totalOutgoingBudget| number:'1.2-2':'be-BE' }} €</span>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="saving-icon"
-             [ngStyle]="{'color': (result.totalSavings >= 0) ? '#5eb59b' : '#d473aa'}">
-            <i class="fa fa-piggy-bank"></i>
-        </div>
-        <span class="badge badge-saving badge-pill">{{ result.totalSavings | number:'1.2-2':'be-BE' }} €</span>
-      </div>
+    <div class="budget-card-header">
+      <div class="budget-card-header-title">{{ result.month }}</div>
     </div>
-  </div>
+    <div class="card-body">
+      <app-resume [incoming] = result.totalIncomingBudget
+                  [fixedOutgoing] = result.totalFixedOutgoingBudget
+                  [outgoing] = result.totalOutgoingBudget
+                  [savings] = result.totalSavings ></app-resume>
+    </div>
 </div>

@@ -4,7 +4,7 @@ import { BudgetOverviewPerYear } from 'src/app/entity/BudgetOverviewPerYear';
 import { BudgetPerMonth } from 'src/app/entity/BudgetPerMonth';
 
 @Component({
-  selector: 'app-overview',
+  selector: 'app-year-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.css',
     '../../../assets/panel_layout.css']
@@ -12,7 +12,7 @@ import { BudgetPerMonth } from 'src/app/entity/BudgetPerMonth';
 export class OverviewComponent implements OnChanges {
 
   @Input() budgetOverview: BudgetOverviewPerYear[] = [];
-
+  @Input() year: number;
   totalIncome: number = 0;
   totalFixedCost: number = 0;
   totalOutgoing: number = 0;

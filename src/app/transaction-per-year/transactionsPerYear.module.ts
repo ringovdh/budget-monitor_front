@@ -7,6 +7,8 @@ import { TransactionsPerYearRoutingModule } from "./transactionsPerYear-routing.
 import { OverviewComponent } from './overview/overview.component';
 import { IndexComponent } from './index/index.component';
 import { GraphsComponent } from './graphs/graphs.component';
+import {MultiSelectModule} from "@syncfusion/ej2-angular-dropdowns";
+import {BudgetModule} from "../budget/budget.module";
 
 @NgModule({
   declarations: [
@@ -15,13 +17,15 @@ import { GraphsComponent } from './graphs/graphs.component';
     IndexComponent,
     GraphsComponent
   ],
-  imports: [
-    CommonModule,
-    TransactionsPerYearRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SelectYearComponentModule
-  ]
+    imports: [
+        CommonModule,
+        TransactionsPerYearRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SelectYearComponentModule,
+        MultiSelectModule,
+        BudgetModule
+    ]
 })
 
 export class TransactionsPerYearModule { }

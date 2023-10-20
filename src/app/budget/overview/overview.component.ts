@@ -7,11 +7,11 @@ import {BudgetOverviewPerMonth} from "../../entity/BudgetOverviewPerMonth";
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.css',
-    '../../../assets/panel_layout.css']
+    '../../../assets/panel_layout.css',
+    '../../../assets/resume.layout.css']
 })
 export class OverviewComponent implements OnChanges {
 
-  overviewBudgetBarChart: any;
   chart: any;
   @Input() monthlyBudgetOverview: MonthlyBudgetOverview;
   budgetOverview: BudgetOverviewPerMonth[] = [];
