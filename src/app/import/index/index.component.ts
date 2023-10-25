@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {Transaction} from "../../transaction/transaction";
+import {Transaction} from "../../admin/transaction/transaction";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {CreateComponent} from "../../transaction/create/create.component";
+import {CreateComponent} from "../../admin/transaction/create/create.component";
 
 @Component({
   selector: 'app-import-index',

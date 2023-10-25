@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ImportRoutingModule } from './import-routing.module';
 import {ImportComponent} from "./import/import.component";
 import {ReactiveFormsModule} from "@angular/forms";
-import {BudgetModule} from "../budget/budget.module";
+import {BudgetPerMonthModule} from "../budget-per-month/budgetPerMonth.module";
 import { IndexComponent } from './index/index.component';
 
 
@@ -17,7 +17,7 @@ import { IndexComponent } from './index/index.component';
     CommonModule,
     ImportRoutingModule,
     ReactiveFormsModule,
-    BudgetModule
+    BudgetPerMonthModule
   ]
 })
 export class ImportModule { }

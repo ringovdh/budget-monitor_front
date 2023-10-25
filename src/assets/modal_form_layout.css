@@ -80,3 +80,9 @@
   transition: all 0.3s ease 0s;
   float: right;
 }
+
+.overview-card {
+  border-left: 8px solid #7d97a5;
+  background-color: #f1f4f5;
+  margin: 5px;
+}

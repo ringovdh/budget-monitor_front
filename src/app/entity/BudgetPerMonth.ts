@@ -1,4 +1,4 @@
-import { Transaction } from "../transaction/transaction";
+import { Transaction } from "../admin/transaction/transaction";
 
 export interface BudgetPerMonth {
   month: string,

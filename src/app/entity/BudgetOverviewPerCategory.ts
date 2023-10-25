@@ -1,5 +1,5 @@
 import {Category} from "../admin/category/category";
-import {Transaction} from "../transaction/transaction";
+import {Transaction} from "../admin/transaction/transaction";
 
 export interface BudgetOverviewPerCategory {
   year: number;

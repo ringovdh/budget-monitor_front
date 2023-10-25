@@ -1,21 +1,12 @@
-<div class="budget-modal-header">
+<div class="modal-header">
   <div class="modal-header-left">
     <h3>Transacties </h3>
   </div>
 </div>
-<div class="budget-modal-body">
-  <div class="card budget-overview-card" *ngFor="let tx of overview.transactions">
+<div class="modal-body">
+  <div class="card overview-card" *ngFor="let tx of project.transactions">
     <div class="card-body">
       <div class="row no-gutters align-items-center">
-        <div id="edit_menu">
-          <div class="edit_menu">
-            <i class="fa fa-wrench"></i>
-            <div class="edit_menu_links">
-              <a (click)="editTransaction(tx)"><i class="fa fa-pencil"></i></a>
-              <a (click)="deleteTransaction(tx.tx_id)"><i class="fa fa-trash"></i></a>
-            </div>
-          </div>
-        </div>
         <div class="col-3 mr-2">
           <div class="budgetOverview-date">{{ tx.date | date: 'dd-MM yyyy' }}</div>
         </div>
@@ -31,7 +22,7 @@
     </div>
   </div>
 </div>
-<div class="budget-modal-footer">
+<div class="modal-budget-footer">
   <button class="btn btn-sm" type="button" (click)="close()">
     <i class="fa fa-times-circle"></i> Sluiten
   </button>

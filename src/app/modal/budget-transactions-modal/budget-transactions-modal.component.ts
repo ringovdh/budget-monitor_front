@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import { EditComponent } from 'src/app/transaction/edit/edit.component';
-import { Transaction } from 'src/app/transaction/transaction';
-import { TransactionService } from 'src/app/transaction/transaction.service';
+import { EditComponent } from 'src/app/admin/transaction/edit/edit.component';
+import { Transaction } from 'src/app/admin/transaction/transaction';
+import { TransactionService } from 'src/app/admin/transaction/transaction.service';
 import {BudgetOverviewPerMonth} from "../../entity/BudgetOverviewPerMonth";
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 
@@ -27,11 +27,10 @@ export class BudgetTransactionsModalComponent implements OnInit {
     const modalRef = this.modalService.open(EditComponent);
     modalRef.componentInstance.transaction = tx;
 
-      modalRef.componentInstance.returnTransaction.subscribe((receivedTransaction: Transaction) => {
-        let index = this.overview.transactions.indexOf(tx);
-        this.overview.transactions[index] = receivedTransaction;
-      });
-   
+    modalRef.componentInstance.returnTransaction.subscribe((receivedTransaction: Transaction) => {
+      let index = this.overview.transactions.indexOf(tx);
+      this.overview.transactions[index] = receivedTransaction;
+    });
   }
 
   deleteTransaction(id: number) {

@@ -12,25 +12,27 @@ import { CommentModule } from './admin/comment/comment.module';
 import { CategoryModule } from './admin/category/category.module';
 import { ImportModule } from './import/import.module';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { TransactionModule } from './transaction/transaction.module';
+import { TransactionModule } from './admin/transaction/transaction.module';
 import { ReactiveFormsModule } from "@angular/forms";
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 import { ImportModalComponent } from './modal/import-modal/import-modal.component';
-import { BudgetModule } from "./budget/budget.module";
+import { BudgetPerMonthModule } from "./budget-per-month/budgetPerMonth.module";
 import { BudgetTransactionsModalComponent } from './modal/budget-transactions-modal/budget-transactions-modal.component';
-import { TransactionsPerCategoryModule } from './transaction-per-category/transactionsPerCategory.module';
-import { TransactionsPerYearModule } from './transaction-per-year/transactionsPerYear.module';
+import { BudgetPerCategoryModule } from './budget-per-category/budgetPerCategory.module';
+import { BudgetPerYearModule } from './budget-per-year/budgetPerYear.module';
 import { SelectYearComponentModule } from './forms/selectYearComponent.module';
 import { ProjectModule } from './admin/project/project.module';
 import { ProjectsModule } from './projects/projects.module';
 import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
+import { ProjectTransactionsModalComponent } from './modal/project-transactions-modal/project-transactions-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConfirmationModalComponent,
     ImportModalComponent,
-    BudgetTransactionsModalComponent
+    BudgetTransactionsModalComponent,
+    ProjectTransactionsModalComponent
   ],
     imports: [
       BrowserModule,
@@ -41,9 +43,9 @@ import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
       ProjectsModule,
       ImportModule,
       TransactionModule,
-      BudgetModule,
-      TransactionsPerCategoryModule,
-      TransactionsPerYearModule,
+      BudgetPerMonthModule,
+      BudgetPerCategoryModule,
+      BudgetPerYearModule,
       SelectYearComponentModule,
       HttpClientModule,
       RouterLink,
