@@ -37,12 +37,10 @@ export class CommentService {
   }
 
   create(comment: Comment): Observable<Comment> {
-    console.log('comment', comment)
     return this.httpClient.post<Comment>(this.apiURL, JSON.stringify(comment), this.httpOptions)
   }
 
   update(id: number, comment: Comment): Observable<Comment> {
-    console.log('comment', comment)
     return this.httpClient.put<Comment>(this.apiURL + id, JSON.stringify(comment), this.httpOptions)
   }
 }

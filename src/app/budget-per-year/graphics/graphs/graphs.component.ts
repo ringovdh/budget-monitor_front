@@ -1,36 +1,26 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js';
 import { BudgetPerMonth } from 'src/app/entity/BudgetPerMonth';
-import {FormControl, FormGroup} from "@angular/forms";
-import {BudgetPerMonthService} from "../../budget-per-month/budgetPerMonth.service";
 
 @Component({
   selector: 'app-graphs',
   templateUrl: './graphs.component.html',
   styleUrls: ['./graphs.component.css',
-    '../../../assets/panel_layout.css']
+    '../../../../assets/panel_layout.css']
 })
 export class GraphsComponent implements OnChanges {
 
-  @Input() budgetResultsPerMonth: BudgetPerMonth[];
+  @Input() budgetsPerMonth: BudgetPerMonth[];
   @Input() year: number;
   restBudgetPerMonthlineChart: any;
   totalRestBudget: number = 0;
-  addDataForm!: FormGroup;
-  yearSelections: any[];
 
-  constructor(public budgetService: BudgetPerMonthService) { }
+  constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.budgetResultsPerMonth != null) {
+    if (this.budgetsPerMonth != null) {
       this.createRestBudgetPerYearGraph();
     }
-  }
-
-  submit() {
-    this.budgetService.getBudgetOverviewByYear(this.addDataForm.get("year").value).subscribe((data) => {
-      console.log('ddd', data);
-    });
   }
 
   private createRestBudgetPerYearGraph() {
@@ -82,10 +72,10 @@ export class GraphsComponent implements OnChanges {
   private calculateRestBudgetByMonth() {
     let groups: Map<string, number> = new Map<string, number>();
     this.totalRestBudget = 0;
-    this.budgetResultsPerMonth.forEach (
+    this.budgetsPerMonth.forEach (
         r => {
           let _period = r.month;
-          groups.set(_period, this.calculateTotalRestBudget(r));
+          groups.set(_period+"", this.calculateTotalRestBudget(r));
         });
 
     return new Map([...groups.entries()]);

@@ -1,32 +1,32 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Chart } from 'chart.js/auto';
-import { MonthlyBudgetOverview } from 'src/app/entity/MonthlyBudgetOverview';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Chart} from "chart.js/auto";
+import {YearlyBudgetOverview} from "../../../entity/YearlyBudgetOverview";
 import {GraphData} from "../../../entity/GraphData";
 
 @Component({
-  selector: 'app-overview-graph',
-  templateUrl: './overview-graph.component.html',
-  styleUrls: ['./overview-graph.component.css',
+  selector: 'app-year-overview-graph',
+  templateUrl: './year-overview-graph.component.html',
+  styleUrls: ['./year-overview-graph.component.css',
     '../../../../assets/panel_layout.css',
     '../../../../assets/graph_layout.css']
 })
-export class OverviewGraphComponent implements OnChanges {
+export class YearOverviewGraphComponent implements OnChanges {
 
-  overviewBudgetCharts: any;
+  yearOverviewBudgetCharts: any;
   @Input() graphData: GraphData;
 
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.createOverviewBudgetGraphs();
+    this.createYearOverviewBudgetGraphs();
   }
 
-  createOverviewBudgetGraphs() {
-    if (this.overviewBudgetCharts != null) {
-      this.overviewBudgetCharts.destroy();
+  createYearOverviewBudgetGraphs() {
+    if (this.yearOverviewBudgetCharts != null) {
+      this.yearOverviewBudgetCharts.destroy();
     }
 
-    this.overviewBudgetCharts = new Chart('chartsOverviewBudget', {
+    this.yearOverviewBudgetCharts = new Chart('chartsYearOverviewBudget', {
       type: 'bar',
       data: {
         datasets: [
@@ -67,5 +67,4 @@ export class OverviewGraphComponent implements OnChanges {
       }
     });
   }
-
 }

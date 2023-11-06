@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from '../project';
 import { ProjectsService } from '../projects.service';
-import {BudgetOverviewPerCategory} from "../../entity/BudgetOverviewPerCategory";
+import {BudgetPerCategory} from "../../entity/BudgetPerCategory";
 import {
   BudgetTransactionsModalComponent
 } from "../../modal/budget-transactions-modal/budget-transactions-modal.component";

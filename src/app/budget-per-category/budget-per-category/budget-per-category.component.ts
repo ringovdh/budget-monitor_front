@@ -5,7 +5,7 @@ import { BehaviorSubject, catchError, map, Observable, of, startWith } from 'rxj
 import { Category } from '../../admin/category/category';
 import { CategoryService } from '../../admin/category/category.service';
 import { BudgetHttpResponse } from '../../entity/budgetHttpResponse';
-import { BudgetOverviewPerCategory } from '../../entity/BudgetOverviewPerCategory';
+import { BudgetPerCategory } from '../../entity/BudgetPerCategory';
 import { Transaction } from '../../admin/transaction/transaction';
 import { TransactionService } from '../../admin/transaction/transaction.service';
 
@@ -17,7 +17,7 @@ import { TransactionService } from '../../admin/transaction/transaction.service'
 })
 export class BudgetPerCategoryComponent implements OnInit {
 
-  budgetOverview: BudgetOverviewPerCategory[] = [];
+  budgetOverview: BudgetPerCategory[] = [];
   categories: Category[] = [];
   searchForm!: FormGroup;
 
@@ -31,7 +31,6 @@ export class BudgetPerCategoryComponent implements OnInit {
 
   submit() {
     this.transactionService.getBudgetOverviewByCategory(this.searchForm.get("category").value, this.searchForm.get("year").value).subscribe(data => {
-      console.log('in', data)
       this.budgetOverview = data;
     });
   }

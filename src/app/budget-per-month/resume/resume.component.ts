@@ -1,4 +1,5 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {ResumeData} from "../../entity/ResumeData";
 
 @Component({
   selector: 'app-resume',
@@ -8,12 +9,11 @@ import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 })
 export class ResumeComponent implements OnChanges {
 
-  @Input() incoming: number;
-  @Input() fixedOutgoing: number;
-  @Input() outgoing: number;
-  @Input() savings: number;
+  @Input() resumeData: ResumeData;
 
   constructor() { }
 
-  ngOnChanges(changes: SimpleChanges) { }
+  ngOnChanges(changes: SimpleChanges) {
+  }
+
 }

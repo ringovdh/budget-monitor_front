@@ -35,3 +35,17 @@
 .tab-pane {
   text-align: center;
 }
+
+.resume-badge-total {
+  font-size: 12px;
+  background-color: #738FD4;
+  float: right;
+  color: #f1f4f5;
+}
+
+.resume-badge {
+  font-size: 12px;
+  background-color: #738FD4;
+  float: right;
+  color: #f1f4f5;
+}

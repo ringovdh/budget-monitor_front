@@ -45,13 +45,10 @@ export class IndexComponent implements OnInit {
   }
 
   goToPage(category?: number, year?: string, pageNumber?: number): void {
-    console.log('cat', category)
-    console.log('year', year)
     this.transactionsState$ = this.transactionService.transactions$(category, year, pageNumber).pipe(
       map((response: CustomHttpResponse<Page<Transaction>>) => {
         this.responseSubject.next(response);
         this.currentPageSubject.next(pageNumber);
-        console.log('go to page: ', response);
         return { appState: 'APP_LOADED', appData: response }
       }),
       startWith({appState: 'APP_LOADED', appData: this.responseSubject.value}),
@@ -91,7 +88,6 @@ export class IndexComponent implements OnInit {
       map((response: CustomHttpResponse<Page<Transaction>>) => {
         this.responseSubject.next(response);
         this.currentPageSubject.next(response.data.page.number);
-        console.log(response);
         return { appState: 'APP_LOADED', appData: response }
       }),
       startWith({appState: 'APP_LOADING'}),

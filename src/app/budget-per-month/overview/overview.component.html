@@ -1,7 +1,7 @@
-<ng-container *ngIf="budgetOverview.length === 0">
+<ng-container *ngIf="!showOverview">
   <div class="no-budget-overview">Selecteer eerst een maand en jaartal.</div>
 </ng-container>
-<ng-container *ngIf="budgetOverview.length > 0">
+<ng-container *ngIf="showOverview">
   <div class="budgetOverview-resume">
     <div class="custom-child-panel">
       <div class="panel-heading">
@@ -20,18 +20,15 @@
               <div class="col-8">
                 <div class="card resume-card">
                   <div class="card-body">
-                    <app-resume [incoming] = totalIncome
-                                [fixedOutgoing] = totalFixedCost
-                                [outgoing] = totalOutgoing
-                                [savings] = totalSavings ></app-resume>
+                    <app-resume [resumeData]= monthResumeData>
+                    </app-resume>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-6">
-            <app-overview-graph
-              [monthlyBudgetOverview]="monthlyBudgetOverview">
+            <app-overview-graph [graphData]="graphData" >
             </app-overview-graph>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js';
-import { BudgetOverviewPerCategory } from 'src/app/entity/BudgetOverviewPerCategory';
+import { BudgetPerCategory } from 'src/app/entity/BudgetPerCategory';
 import { getPeriodLabel } from 'src/app/common/utils/dateUtils'
 
 @Component({
@@ -14,7 +14,7 @@ export class GraphsComponent implements OnChanges {
   budgetPerCategorylineChart: any;
   txPerYearBarChart: any;
   amountPerYearBarChart: any;
-  @Input() budgetOverview: BudgetOverviewPerCategory[] = [];
+  @Input() budgetOverview: BudgetPerCategory[] = [];
   budgetOverwiewByMonth: { label: string, total: number }[] = [];
 
   constructor() { }
@@ -143,5 +143,5 @@ export class GraphsComponent implements OnChanges {
     )
     return new Map([...groups.entries()].sort());
   }
-  
+
 }

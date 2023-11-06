@@ -1,7 +1,7 @@
-<div class="no-budget-overview" *ngIf="budgetOverview.length === 0">
+<div class="no-budget-overview" *ngIf="!yearlyBudgetOverview">
   Selecteer eerst een jaartal.
 </div>
-<div class="budgetOverview-resume" *ngIf="budgetOverview.length > 0">
+<div class="budgetOverview-resume" *ngIf="yearlyBudgetOverview">
   <div class="budgetOverview-resume">
     <div class="custom-child-panel">
       <div class="panel-heading">
@@ -15,66 +15,20 @@
       </div>
       <div class="panel-body">
         <div class="row">
-          <div class="col-4">
-            <div class="card total-budget-card">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="budgetOverview-label">Totaal inkomst:</div>
-                    <div class="budgetOverview-amount">{{ totalIncome | number:'1.2-2':'be-BE'}} €</div>
-                  </div>
-                  <div class="col-auto total-budget-icon">
-                    <i class="fa-solid fa-arrow-trend-up"></i>
+          <div class="col-6">
+            <div class="row">
+              <div class="col-8">
+                <div class="card resume-card">
+                  <div class="card-body">
+                    <app-resume [resumeData]= yearResumeData></app-resume>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-4">
-            <div class="card total-budget-card">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="budgetOverview-label">Totaal vaste kost:</div>
-                    <div class="budgetOverview-amount">{{ totalFixedCost | number:'1.2-2':'be-BE'}} €</div>
-                  </div>
-                  <div class="col-auto total-budget-icon">
-                    <i class="fa-solid fa-arrow-trend-down"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="card total-budget-card">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="budgetOverview-label">Totaal uitgaven:</div>
-                    <div class="budgetOverview-amount">{{ totalOutgoing | number:'1.2-2':'be-BE'}} €</div>
-                  </div>
-                  <div class="col-auto total-budget-icon">
-                    <i class="fa-solid fa-arrow-trend-down"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="card end-total-budget-card">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="budgetOverview-label">Eind bedrag:</div>
-                    <div class="budgetOverview-amount">{{ totalAmount | number:'1.2-2':'be-BE'}} €</div>
-                  </div>
-                  <div class="col-auto total-budget-icon">
-                    <i *ngIf= "totalAmount > 0" class="fa fa-circle-up"></i>
-                    <i *ngIf= "totalAmount < 0" class="fa fa-circle-down"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="col-6">
+            <app-year-overview-graph [graphData] = graphData>
+            </app-year-overview-graph>
           </div>
         </div>
       </div>
@@ -90,11 +44,11 @@
       </nav>
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-index" role="tabpanel" aria-labelledby="nav-index-tab">
-          <app-year-index [budgetResultsPerMonth] = budgetResultsPerMonth></app-year-index>
+          <app-month-overview [budgetsPerMonth] = yearlyBudgetOverview.budgetsPerMonth></app-month-overview>
         </div>
         <div class="tab-pane fade" id="nav-graphs" role="tabpanel" aria-labelledby="nav-graphs-tab">
-          <app-graphs [budgetResultsPerMonth] = budgetResultsPerMonth
-                      [year] = year >
+          <app-graphs [budgetsPerMonth] = yearlyBudgetOverview.budgetsPerMonth
+                      [year] = year>
           </app-graphs>
         </div>
       </div>

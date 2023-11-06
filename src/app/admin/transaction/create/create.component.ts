@@ -30,11 +30,9 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.getAll().subscribe(data => {
       this.categories = data;
-      console.log('d1', data)
     });
     this.projectService.getAll().subscribe(data => {
       this.projects = data;
-      console.log('d2', data)
     })
     this.createTransactionForm = new FormGroup({
       number: new FormControl(this.transaction ? this.transaction.number : ''),

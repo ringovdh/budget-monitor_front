@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators } from '@angular/forms';
 import { MonthlyBudgetOverview } from 'src/app/entity/MonthlyBudgetOverview';
-import {BudgetOverviewPerMonth} from "../../entity/BudgetOverviewPerMonth";
 import {BudgetPerMonthService} from "../budgetPerMonth.service";
 
 @Component({
@@ -12,7 +11,6 @@ import {BudgetPerMonthService} from "../budgetPerMonth.service";
 })
 export class BudgetPerMonthComponent implements OnInit {
 
-  budgetOverview: BudgetOverviewPerMonth[] = [];
   monthlyBudgetOverview: MonthlyBudgetOverview;
   months: {value:number, name: string}[];
   searchForm!: FormGroup;
@@ -25,8 +23,9 @@ export class BudgetPerMonthComponent implements OnInit {
   }
 
   submit() {
-    this.budgetService.getBudgetOverviewByPeriod(this.searchForm.get("month").value, this.searchForm.get("year").value).subscribe((data) => {
+    this.budgetService.getMonthlyBudgetOverview(this.searchForm.get("month").value, this.searchForm.get("year").value).subscribe((data) => {
       this.monthlyBudgetOverview = data;
+      console.log('in', data)
     });
   }
 

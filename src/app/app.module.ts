@@ -23,7 +23,6 @@ import { BudgetPerYearModule } from './budget-per-year/budgetPerYear.module';
 import { SelectYearComponentModule } from './forms/selectYearComponent.module';
 import { ProjectModule } from './admin/project/project.module';
 import { ProjectsModule } from './projects/projects.module';
-import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 import { ProjectTransactionsModalComponent } from './modal/project-transactions-modal/project-transactions-modal.component';
 
 @NgModule({
@@ -52,7 +51,6 @@ import { ProjectTransactionsModalComponent } from './modal/project-transactions-
       NgxPaginationModule,
       NgbModule,
       ReactiveFormsModule,
-      MultiSelectModule
     ],
   providers: [NgbActiveModal],
   bootstrap: [AppComponent]

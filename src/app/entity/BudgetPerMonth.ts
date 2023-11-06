@@ -1,7 +1,7 @@
 import { Transaction } from "../admin/transaction/transaction";
 
 export interface BudgetPerMonth {
-  month: string,
+  month: number,
   totalIncomingBudget: number,
   totalFixedOutgoingBudget: number,
   totalOutgoingBudget: number,

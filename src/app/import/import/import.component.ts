@@ -75,7 +75,7 @@ export class ImportComponent implements OnInit {
 
   loadBudgetOverview(transaction: Transaction) {
     let date = new Date(transaction.date);
-    this.budgetService.getBudgetOverviewByPeriod(date.getMonth()+1, date.getFullYear())
+    this.budgetService.getMonthlyBudgetOverview(date.getMonth()+1, date.getFullYear())
       .subscribe(data => {
         this.monthlyBudgetOverview = data;
       });

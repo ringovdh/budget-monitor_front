@@ -1,7 +1,7 @@
-import { BudgetOverviewPerCategory } from "./BudgetOverviewPerCategory";
-import { MonthGraphData } from "./MonthGraphData";
+import { BudgetPerCategory } from "./BudgetPerCategory";
+import { GraphData } from "./GraphData";
 
 export interface MonthlyBudgetOverview {
-  transactionsPerCategoryList: BudgetOverviewPerCategory[];
-  monthGraphData: MonthGraphData;
+  budgetsPerCategory: BudgetPerCategory[];
+  graphData: GraphData;
 }

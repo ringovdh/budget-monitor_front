@@ -5,17 +5,18 @@ import { SelectYearComponentModule } from '../forms/selectYearComponent.module'
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BudgetPerYearRoutingModule } from "./budgetPerYear-routing.module";
 import { OverviewComponent } from './overview/overview.component';
-import { IndexComponent } from './index/index.component';
-import { GraphsComponent } from './graphs/graphs.component';
-import {MultiSelectModule} from "@syncfusion/ej2-angular-dropdowns";
+import { MonthOverviewComponent } from './month-overview/month-overview.component';
+import { GraphsComponent } from './graphics/graphs/graphs.component';
 import {BudgetPerMonthModule} from "../budget-per-month/budgetPerMonth.module";
+import { YearOverviewGraphComponent } from './graphics/year-overview-graph/year-overview-graph.component';
 
 @NgModule({
   declarations: [
     BudgetPerYearComponent,
     OverviewComponent,
-    IndexComponent,
-    GraphsComponent
+    MonthOverviewComponent,
+    GraphsComponent,
+    YearOverviewGraphComponent
   ],
     imports: [
         CommonModule,
@@ -23,7 +24,6 @@ import {BudgetPerMonthModule} from "../budget-per-month/budgetPerMonth.module";
         FormsModule,
         ReactiveFormsModule,
         SelectYearComponentModule,
-        MultiSelectModule,
         BudgetPerMonthModule
     ]
 })
