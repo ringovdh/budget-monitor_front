@@ -1,7 +1,10 @@
-<div class="no-budget-overview" *ngIf="!yearlyBudgetOverview">
-  Selecteer eerst een jaartal.
-</div>
-<div class="budgetOverview-resume" *ngIf="yearlyBudgetOverview">
+<ng-container *ngIf="!yearlyBudgetOverview">
+  <div class="no-budget-overview">
+    Selecteer eerst een jaartal.
+  </div>
+</ng-container>
+<ng-container *ngIf="yearlyBudgetOverview">
+  <div class="budgetOverview-resume">
   <div class="budgetOverview-resume">
     <div class="custom-child-panel">
       <div class="panel-heading">
@@ -20,9 +23,15 @@
               <div class="col-8">
                 <div class="card resume-card">
                   <div class="card-body">
-                    <app-resume [resumeData]= yearResumeData></app-resume>
+                    <app-resume [resumeData]= yearResumeData>
+                    </app-resume>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <app-project-resume [projectsData] = projectsData></app-project-resume>
               </div>
             </div>
           </div>
@@ -55,3 +64,4 @@
     </div>
   </ng-container>
 </div>
+</ng-container>

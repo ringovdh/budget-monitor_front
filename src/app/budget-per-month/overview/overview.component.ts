@@ -1,10 +1,9 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import { Chart } from 'chart.js';
 import { MonthlyBudgetOverview } from 'src/app/entity/MonthlyBudgetOverview';
-import {BudgetOverviewPerMonth} from "../../entity/BudgetOverviewPerMonth";
-import {ResumeData} from "../../entity/ResumeData";
-import {GraphData} from "../../entity/GraphData";
-import {BudgetPerCategory} from "../../entity/BudgetPerCategory";
+import { BudgetOverviewPerMonth } from "../../entity/BudgetOverviewPerMonth";
+import { ResumeData } from "../../entity/ResumeData";
+import { GraphData } from "../../entity/GraphData";
+import { ProjectData } from "../../entity/Projectdata";
 
 @Component({
   selector: 'app-overview',
@@ -30,6 +29,7 @@ export class OverviewComponent implements OnChanges {
 
   showOverview: boolean = false;
   graphData: GraphData;
+  projectsData: ProjectData[];
   monthResumeData: ResumeData;
 
   constructor() { }
@@ -39,6 +39,7 @@ export class OverviewComponent implements OnChanges {
     if (change && change.currentValue != undefined) {
       const monthlyBudgetOverview: MonthlyBudgetOverview = change.currentValue;
       this.graphData = monthlyBudgetOverview.graphData;
+      this.projectsData = change.currentValue.projectsData;
       this.showOverview = monthlyBudgetOverview.budgetsPerCategory.length > 0;
       this.filterCategories(monthlyBudgetOverview);
       this.countTotals();

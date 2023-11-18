@@ -3,6 +3,7 @@ import { BudgetPerMonth } from 'src/app/entity/BudgetPerMonth';
 import { YearlyBudgetOverview } from "../../entity/YearlyBudgetOverview";
 import { GraphData } from "../../entity/GraphData";
 import { ResumeData } from "../../entity/ResumeData";
+import { ProjectData } from "../../entity/Projectdata";
 
 @Component({
   selector: 'app-year-overview',
@@ -16,6 +17,7 @@ export class OverviewComponent implements OnChanges {
   @Input() yearlyBudgetOverview: YearlyBudgetOverview;
   @Input() year: number;
   graphData: GraphData;
+  projectsData: ProjectData[];
   budgetsPerMonth: BudgetPerMonth[];
   yearResumeData: ResumeData;
 
@@ -26,6 +28,7 @@ export class OverviewComponent implements OnChanges {
     const change = changes['yearlyBudgetOverview'];
     if (change && change.currentValue != undefined) {
       this.graphData = change.currentValue.graphData;
+      this.projectsData = change.currentValue.projectsData;
       this.yearResumeData = this.createResumeData(change.currentValue.budgetsPerMonth);
     }
   }

@@ -1,5 +1,7 @@
 <ng-container *ngIf="!showOverview">
-  <div class="no-budget-overview">Selecteer eerst een maand en jaartal.</div>
+  <div class="no-budget-overview">
+    Selecteer eerst een maand en jaartal.
+  </div>
 </ng-container>
 <ng-container *ngIf="showOverview">
   <div class="budgetOverview-resume">
@@ -24,6 +26,11 @@
                     </app-resume>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <app-project-resume [projectsData] = projectsData></app-project-resume>
               </div>
             </div>
           </div>

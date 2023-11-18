@@ -25,7 +25,6 @@ export class BudgetPerMonthComponent implements OnInit {
   submit() {
     this.budgetService.getMonthlyBudgetOverview(this.searchForm.get("month").value, this.searchForm.get("year").value).subscribe((data) => {
       this.monthlyBudgetOverview = data;
-      console.log('in', data)
     });
   }
 

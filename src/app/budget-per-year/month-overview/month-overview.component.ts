@@ -12,7 +12,7 @@ import {ResumeData} from "../../entity/ResumeData";
 export class MonthOverviewComponent implements OnChanges {
 
   @Input() budgetsPerMonth: BudgetPerMonth[];
-  monthOverviews: MonthOverview[] = [];
+  monthOverviews: MonthOverview[];
 
   constructor() { }
 
@@ -21,6 +21,7 @@ export class MonthOverviewComponent implements OnChanges {
   }
 
   mapToMonthOverviews() {
+    this.monthOverviews = [];
     this.budgetsPerMonth.forEach(bpm => {
       this.monthOverviews.push(
         {
