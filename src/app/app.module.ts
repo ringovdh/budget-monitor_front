@@ -24,6 +24,8 @@ import { SelectYearComponentModule } from './forms/selectYearComponent.module';
 import { ProjectModule } from './admin/project/project.module';
 import { ProjectsModule } from './projects/projects.module';
 import { ProjectTransactionsModalComponent } from './modal/project-transactions-modal/project-transactions-modal.component';
+import { SavingsYearOverviewComponent } from './savings/savings-year-overview/savings-year-overview.component';
+import {SavingsModule} from "./savings/savings.module";
 
 @NgModule({
   declarations: [
@@ -33,25 +35,26 @@ import { ProjectTransactionsModalComponent } from './modal/project-transactions-
     BudgetTransactionsModalComponent,
     ProjectTransactionsModalComponent
   ],
-    imports: [
-      BrowserModule,
-      RouterOutlet,
-      CommentModule,
-      CategoryModule,
-      ProjectModule,
-      ProjectsModule,
-      ImportModule,
-      TransactionModule,
-      BudgetPerMonthModule,
-      BudgetPerCategoryModule,
-      BudgetPerYearModule,
-      SelectYearComponentModule,
-      HttpClientModule,
-      RouterLink,
-      NgxPaginationModule,
-      NgbModule,
-      ReactiveFormsModule,
-    ],
+  imports: [
+    BrowserModule,
+    RouterOutlet,
+    CommentModule,
+    CategoryModule,
+    ProjectModule,
+    ProjectsModule,
+    ImportModule,
+    TransactionModule,
+    BudgetPerMonthModule,
+    BudgetPerCategoryModule,
+    BudgetPerYearModule,
+    SelectYearComponentModule,
+    SavingsModule,
+    HttpClientModule,
+    RouterLink,
+    NgxPaginationModule,
+    NgbModule,
+    ReactiveFormsModule,
+  ],
   providers: [NgbActiveModal],
   bootstrap: [AppComponent]
 })

@@ -3,7 +3,7 @@ import { MonthlyBudgetOverview } from 'src/app/entity/MonthlyBudgetOverview';
 import { BudgetOverviewPerMonth } from "../../entity/BudgetOverviewPerMonth";
 import { ResumeData } from "../../entity/ResumeData";
 import { GraphData } from "../../entity/GraphData";
-import { ProjectData } from "../../entity/Projectdata";
+import { ProjectData } from "../../entity/ProjectData";
 
 @Component({
   selector: 'app-overview',

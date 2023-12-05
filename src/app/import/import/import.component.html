@@ -30,7 +30,7 @@
             (savedTransaction)="loadBudgetOverview($event)">
           </app-import-index>
         </div>
-        <div *ngIf="budgetOverview.length > 0" class="transaction-panel">
+        <div class="transaction-panel">
           <app-overview [monthlyBudgetOverview]="monthlyBudgetOverview"></app-overview>
         </div>
       </div>

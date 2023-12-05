@@ -1,6 +1,6 @@
 import { BudgetPerCategory } from "./BudgetPerCategory";
 import { GraphData } from "./GraphData";
-import {ProjectData} from "./Projectdata";
+import {ProjectData} from "./ProjectData";
 
 export interface MonthlyBudgetOverview {
   budgetsPerCategory: BudgetPerCategory[];

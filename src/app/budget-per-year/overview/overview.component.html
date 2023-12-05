@@ -49,6 +49,7 @@
         <div class="nav nav-tabs " id="nav-tab" role="tablist">
           <button class="nav-link active budget-tab" id="nav-index-tab" data-bs-toggle="tab" data-bs-target="#nav-index" type="button" role="tab" aria-controls="nav-index" aria-selected="true">Maandoverzicht</button>
           <button class="nav-link budget-tab" id="nav-graphs-tab" data-bs-toggle="tab" data-bs-target="#nav-graphs" type="button" role="tab" aria-controls="nav-graphs" aria-selected="false">Grafiek</button>
+          <button class="nav-link budget-tab" id="nav-savings-tab" data-bs-toggle="tab" data-bs-target="#nav-savings" type="button" role="tab" aria-controls="nav-savings" aria-selected="false">Sparen</button>
         </div>
       </nav>
       <div class="tab-content" id="nav-tabContent">
@@ -59,6 +60,10 @@
           <app-graphs [budgetsPerMonth] = yearlyBudgetOverview.budgetsPerMonth
                       [year] = year>
           </app-graphs>
+        </div>
+        <div class="tab-pane fade" id="nav-savings" role="tabpanel" aria-labelledby="nav-savings-tab">
+          <app-savings-year-overview [savingsData] = yearlyBudgetOverview.savingsData>
+          </app-savings-year-overview>
         </div>
       </div>
     </div>

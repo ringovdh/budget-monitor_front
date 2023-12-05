@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {ProjectData} from "../../entity/Projectdata";
+import {ProjectData} from "../../entity/ProjectData";
 
 @Component({
   selector: 'app-project-resume',

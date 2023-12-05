@@ -3,7 +3,8 @@ import { BudgetPerMonth } from 'src/app/entity/BudgetPerMonth';
 import { YearlyBudgetOverview } from "../../entity/YearlyBudgetOverview";
 import { GraphData } from "../../entity/GraphData";
 import { ResumeData } from "../../entity/ResumeData";
-import { ProjectData } from "../../entity/Projectdata";
+import { ProjectData } from "../../entity/ProjectData";
+import {SavingsData} from "../../entity/SavingsData";
 
 @Component({
   selector: 'app-year-overview',
@@ -17,6 +18,7 @@ export class OverviewComponent implements OnChanges {
   @Input() yearlyBudgetOverview: YearlyBudgetOverview;
   @Input() year: number;
   graphData: GraphData;
+  savingsData: SavingsData;
   projectsData: ProjectData[];
   budgetsPerMonth: BudgetPerMonth[];
   yearResumeData: ResumeData;
@@ -27,10 +29,14 @@ export class OverviewComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const change = changes['yearlyBudgetOverview'];
     if (change && change.currentValue != undefined) {
+      console.log('sd2', change.currentValue)
       this.graphData = change.currentValue.graphData;
+      this.savingsData = change.currentValue.savingsData;
+      //this.savingsData.savingAmounts = new Map([...change.currentValue.savingsData.savingAmounts.entries()]);
       this.projectsData = change.currentValue.projectsData;
       this.yearResumeData = this.createResumeData(change.currentValue.budgetsPerMonth);
     }
+    console.log('sd', this.savingsData)
   }
 
   createResumeData(budgetsPerMonth: BudgetPerMonth[]) {
