@@ -1,25 +1,25 @@
 <ng-container>
   <div>
     <div class="card project-card" *ngFor="let project of projects">
-      <a (click)="openTransactionsModal(project)">
+      <a (click)="openTransactionsModal(project.project)">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="row">
                 <div class="projectOverview-label">
-                  {{ project.projectname }}
+                  {{ project.project.projectname }}
                 </div>
               </div>
 
               <div class="row">
                 <div class="col">
                   <div class="projectOverview-description">
-                    {{ project.description }}
+                    {{ project.project.description }}
                   </div>
                 </div>
                 <div class="col">
                   <div class="projectOverview-description">
-                    {{ project.startdate }}
+                    {{ project.project.startdate }}
                   </div>
                 </div>
               </div>
@@ -31,13 +31,13 @@
                 </div>
                 <div class="col">
                   <div class="projectOverview-description">
-                    totaal {{ project.projectTotal }} €
+                    totaal {{ project.projectTotal | number:'1.2-2':'be-BE'}} €
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-auto projectOverview-icon">
-              <i class="fa {{ project.icon }}"></i>
+              <i class="fa {{ project.project.icon }}"></i>
             </div>
           </div>
         </div>

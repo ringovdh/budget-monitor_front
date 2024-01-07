@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from '../project';
-import { ProjectsService } from '../projects.service';
-import {BudgetPerCategory} from "../../entity/BudgetPerCategory";
-import {
-  BudgetTransactionsModalComponent
-} from "../../modal/budget-transactions-modal/budget-transactions-modal.component";
 import {
   ProjectTransactionsModalComponent
 } from "../../modal/project-transactions-modal/project-transactions-modal.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import { ProjectService } from 'src/app/admin/project/project.service';
+import { ProjectOverview } from 'src/app/entity/ProjectOverview';
 
 @Component({
   selector: 'app-index',
@@ -18,10 +15,10 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class IndexComponent implements OnInit {
 
-  projects: Project[] = []
+  projects: ProjectOverview[] = []
   size: number = 0
 
-  constructor(public projectsService: ProjectsService,
+  constructor(public projectService: ProjectService,
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -29,7 +26,8 @@ export class IndexComponent implements OnInit {
   }
 
   loadProjects() {
-    this.projectsService.getAll().subscribe((data) => {
+    this.projectService.getProjectOverview().subscribe((data) => {
+      console.log('d', data)
       this.projects = data;
       this.size = this.projects.length
     });

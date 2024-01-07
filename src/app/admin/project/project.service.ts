@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Page } from "../../entity/page";
 import { Observable } from 'rxjs';
 import { CustomHttpResponse } from '../../entity/customHttpResponse';
+import { ProjectOverview } from '../../entity/ProjectOverview';
 import { Project } from './../../projects/project';
 
 @Injectable({
@@ -39,4 +40,9 @@ export class ProjectService {
   delete(id: number) {
     return this.httpClient.delete<Project>(this.apiURL + id, this.httpOptions)
   }
+
+  getProjectOverview(): Observable<ProjectOverview[]> {
+    return this.httpClient.get<ProjectOverview[]>(this.apiURL + "overview")
+  }
+
 }
