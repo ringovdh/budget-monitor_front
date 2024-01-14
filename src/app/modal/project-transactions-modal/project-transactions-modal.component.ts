@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Project} from "../../projects/project";
-import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-project-transactions-modal',
@@ -12,8 +12,7 @@ export class ProjectTransactionsModalComponent implements OnInit {
 
   @Input() public project: Project;
 
-  constructor(public ngbActiveModal: NgbActiveModal,
-              private modalService: NgbModal) { }
+  constructor(public ngbActiveModal: NgbActiveModal) { }
 
   ngOnInit(): void {
   }

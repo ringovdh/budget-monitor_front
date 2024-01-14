@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Project } from '../project';
 import {
   ProjectTransactionsModalComponent
 } from "../../modal/project-transactions-modal/project-transactions-modal.component";
@@ -27,13 +26,12 @@ export class IndexComponent implements OnInit {
 
   loadProjects() {
     this.projectService.getProjectOverview().subscribe((data) => {
-      console.log('d', data)
       this.projects = data;
       this.size = this.projects.length
     });
   }
 
-  openTransactionsModal(project: Project) {
+  openTransactionsModal(project: ProjectOverview) {
     const modalRef = this.modalService.open(ProjectTransactionsModalComponent)
     modalRef.componentInstance.project = project;
   }
