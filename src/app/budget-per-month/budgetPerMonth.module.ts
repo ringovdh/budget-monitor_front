@@ -8,9 +8,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BudgetPerMonthComponent } from './budget-per-month/budget-per-month.component';
 import { SelectYearComponent } from '../forms/select-year/select-year.component'
 import { SelectYearComponentModule } from '../forms/selectYearComponent.module';
-import { OverviewGraphComponent } from './graphics/overview-graph/overview-graph.component';
-import { FixedCostGraphComponent } from './graphics/fixed-cost-graph/fixed-cost-graph.component';
-import { OtherCostGraphComponent } from './graphics/other-cost-graph/other-cost-graph.component';
+import { OverviewGraphComponent } from './graphs/overview-graph/overview-graph.component';
+import { FixedCostGraphComponent } from './graphs/fixed-cost-graph/fixed-cost-graph.component';
+import { OtherCostGraphComponent } from './graphs/other-cost-graph/other-cost-graph.component';
 import { ResumeComponent } from './resume/resume.component'
 import {ProjectsModule} from "../projects/projects.module";
 

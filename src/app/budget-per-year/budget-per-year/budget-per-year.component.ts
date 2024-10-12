@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup } from '@angular/forms';
-import { BudgetPerMonthService } from 'src/app/budget-per-month/budgetPerMonth.service';
-import {YearlyBudgetOverview} from "../../entity/YearlyBudgetOverview";
+import { FormControl, FormGroup } from '@angular/forms';
+import { YearlyBudgetOverview } from "../../entity/YearlyBudgetOverview";
+import { BudgetPerYearService } from "../budgetPerYear.service"
 
 @Component({
   selector: 'app-transaction-per-year',
@@ -16,7 +16,7 @@ export class BudgetPerYearComponent implements OnInit {
   year: number;
   title: string = "Overzicht transacties per jaar";
 
-  constructor(public budgetService: BudgetPerMonthService) { }
+  constructor(public budgetService: BudgetPerYearService) { }
 
   ngOnInit(): void {
     this.createSearchForm();

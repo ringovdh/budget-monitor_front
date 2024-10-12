@@ -24,7 +24,6 @@ import { SelectYearComponentModule } from './forms/selectYearComponent.module';
 import { ProjectModule } from './admin/project/project.module';
 import { ProjectsModule } from './projects/projects.module';
 import { ProjectTransactionsModalComponent } from './modal/project-transactions-modal/project-transactions-modal.component';
-import { SavingsYearOverviewComponent } from './savings/savings-year-overview/savings-year-overview.component';
 import {SavingsModule} from "./savings/savings.module";
 
 @NgModule({

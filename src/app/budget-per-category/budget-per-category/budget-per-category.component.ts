@@ -1,13 +1,9 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { BehaviorSubject, catchError, map, Observable, of, startWith } from 'rxjs';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Category } from '../../admin/category/category';
 import { CategoryService } from '../../admin/category/category.service';
-import { BudgetHttpResponse } from '../../entity/budgetHttpResponse';
 import { BudgetPerCategory } from '../../entity/BudgetPerCategory';
-import { Transaction } from '../../admin/transaction/transaction';
-import { TransactionService } from '../../admin/transaction/transaction.service';
+import { BudgetPerCategoryService } from '../budgetPerCategory.service';
 
 @Component({
   selector: 'app-transactions-per-category',
@@ -21,7 +17,7 @@ export class BudgetPerCategoryComponent implements OnInit {
   categories: Category[] = [];
   searchForm!: FormGroup;
 
-  constructor(public transactionService: TransactionService,
+  constructor(public budgetPerCategoryService: BudgetPerCategoryService,
               public categoryService: CategoryService) { }
 
   ngOnInit(): void {
@@ -30,7 +26,7 @@ export class BudgetPerCategoryComponent implements OnInit {
   }
 
   submit() {
-    this.transactionService.getBudgetOverviewByCategory(this.searchForm.get("category").value, this.searchForm.get("year").value).subscribe(data => {
+    this.budgetPerCategoryService.getBudgetOverviewByCategory(this.searchForm.get("category").value, this.searchForm.get("year").value).subscribe(data => {
       this.budgetOverview = data;
     });
   }

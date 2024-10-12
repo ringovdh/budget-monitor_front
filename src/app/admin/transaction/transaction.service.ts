@@ -23,14 +23,6 @@ export class TransactionService {
 
   constructor(private httpClient: HttpClient) { }
 
-  transactions$ = (category: number = 0, year: string = '0' , page: number = 0, size: number = 10): Observable<CustomHttpResponse<Page<Transaction>>> =>
-    this.httpClient.get<CustomHttpResponse<Page<Transaction>>>(`${this.apiURL}/category?categoryId=${category}&year=${year}&page=${page}&size=${size}`);
-
-
-  getBudgetOverviewByCategory(category: number, year: string): Observable<BudgetPerCategory[]> {
-    return this.httpClient.get<BudgetPerCategory[]>(`${this.apiURL}/category?categoryId=${category}&year=${year}`);
-  }
-
   create(transaction: Transaction): Observable<Transaction> {
     return this.httpClient.post<Transaction>(this.apiURL, JSON.stringify(transaction), this.httpOptions)
   }

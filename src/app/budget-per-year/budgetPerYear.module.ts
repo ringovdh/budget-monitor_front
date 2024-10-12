@@ -10,7 +10,6 @@ import { GraphsComponent } from './graphics/graphs/graphs.component';
 import {BudgetPerMonthModule} from "../budget-per-month/budgetPerMonth.module";
 import { YearOverviewGraphComponent } from './graphics/year-overview-graph/year-overview-graph.component';
 import {ProjectsModule} from "../projects/projects.module";
-import {AppModule} from "../app.module";
 import {SavingsModule} from "../savings/savings.module";
 
 @NgModule({
